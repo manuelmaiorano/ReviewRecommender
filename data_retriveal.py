@@ -54,6 +54,7 @@ class RepoRetriveal:
 
         return RepoRetriveal.PullRequest(number, author, file_names, commenters, date)
 
-    def getCommitsIterable(self, extensions):
-        return pydriller.Repository(path_to_repo=self.pydriller_url,only_no_merge=True,
-                              only_modifications_with_file_types=extensions).traverse_commits()
+    def getCommitsIterable(self, to):
+        return pydriller.Repository(path_to_repo=self.pydriller_url,
+                                    only_no_merge=True,
+                                    to=to).traverse_commits()
