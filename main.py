@@ -5,7 +5,7 @@ import pytz
 import argparse
 
 parser = argparse.ArgumentParser(
-                    prog = 'ReviewReocommender',
+                    prog = 'ReviewRecommender',
                     description = 'Given pull request, rank revisors')
 
 parser.add_argument('owner') 
@@ -22,9 +22,7 @@ def getRanking(repo, pullNumber, scoreFunc):
     print(pull)
     pull_date = datetime.fromisoformat(pull.date[:-1])
     pull_date_aware = pytz.utc.localize(pull_date)
-    n_commits = 0
     for commit in repo.getCommitsIterable(to=pull_date_aware):
-        n_commits += 1
         commit_date = commit.committer_date
         author = commit.author.name
         files = commit.modified_files
@@ -34,7 +32,6 @@ def getRanking(repo, pullNumber, scoreFunc):
             if author != pull.author and  fileName in pull.files:
                 reviewRank[author] += scoreFunc(delta)
 
-    print(n_commits)
     return reviewRank
 
 
@@ -43,4 +40,4 @@ if __name__ == '__main__':
     def scoreFunc(seconds):
         return 1
 
-    print(getRanking(repo, 10, scoreFunc))
+    print(getRanking(repo, args.num, scoreFunc))
