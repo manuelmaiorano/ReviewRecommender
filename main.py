@@ -2,9 +2,19 @@ import data_retriveal
 from datetime import datetime
 from collections import defaultdict
 import pytz
+import argparse
 
-token = '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'
-repo = data_retriveal.RepoRetriveal('chaoss', 'grimoirelab-perceval', token)
+parser = argparse.ArgumentParser(
+                    prog = 'ReviewReocommender',
+                    description = 'Given pull request, rank revisors')
+
+parser.add_argument('owner') 
+parser.add_argument('repo') 
+parser.add_argument('num', type=int)
+parser.add_argument('token')
+
+args = parser.parse_args()
+repo = data_retriveal.RepoRetriveal(args.owner, args.repo, args.token)
 
 def getRanking(repo, pullNumber, scoreFunc):
     reviewRank = defaultdict(lambda: 0)
