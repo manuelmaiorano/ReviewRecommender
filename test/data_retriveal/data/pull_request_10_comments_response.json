@@ -1,0 +1,337 @@
+[
+    {
+      "url": "https://api.github.com/repos/chaoss/grimoirelab-perceval/pulls/comments/52324434",
+      "pull_request_review_id": null,
+      "id": 52324434,
+      "node_id": "MDI0OlB1bGxSZXF1ZXN0UmV2aWV3Q29tbWVudDUyMzI0NDM0",
+      "diff_hunk": "@@ -0,0 +1,296 @@\n+# -*- coding: utf-8 -*-\n+#\n+# Copyright (C) 2016 Bitergia\n+#\n+# This program is free software; you can redistribute it and/or modify\n+# it under the terms of the GNU General Public License as published by\n+# the Free Software Foundation; either version 3 of the License, or\n+# (at your option) any later version.\n+#\n+# This program is distributed in the hope that it will be useful,\n+# but WITHOUT ANY WARRANTY; without even the implied warranty of\n+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n+# GNU General Public License for more details.\n+#\n+# You should have received a copy of the GNU General Public License\n+# along with this program; if not, write to the Free Software\n+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.\n+#\n+# Authors:\n+#   Alberto Martín <alberto.martin@bitergia.com>\n+#\n+\n+import json\n+import logging\n+import os.path\n+\n+import requests\n+import time\n+\n+from ..backend import Backend, BackendCommand, metadata\n+from ..cache import Cache\n+from ..errors import CacheError\n+from ..utils import str_to_datetime, DEFAULT_DATETIME, urljoin\n+\n+# Filters are immutable and non-expiring. This filter allows to retrieve all\n+# the information regarding Each question. To know more, visit\n+# https://api.stackexchange.com/docs/questions and paste the filter in the\n+# whitebox filter. It will display a list of checkboxes with the selected\n+# values for the filter provided.\n+",
+      "path": "perceval/backends/stackexchange.py",
+      "position": null,
+      "original_position": 40,
+      "commit_id": "da91b3cfe2b4084c47893024d9c565019f20b030",
+      "original_commit_id": "0491708c08a8c0b849c4dc48d603974b0d408b12",
+      "user": {
+        "login": "sduenas",
+        "id": 833352,
+        "node_id": "MDQ6VXNlcjgzMzM1Mg==",
+        "avatar_url": "https://avatars.githubusercontent.com/u/833352?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/sduenas",
+        "html_url": "https://github.com/sduenas",
+        "followers_url": "https://api.github.com/users/sduenas/followers",
+        "following_url": "https://api.github.com/users/sduenas/following{/other_user}",
+        "gists_url": "https://api.github.com/users/sduenas/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/sduenas/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/sduenas/subscriptions",
+        "organizations_url": "https://api.github.com/users/sduenas/orgs",
+        "repos_url": "https://api.github.com/users/sduenas/repos",
+        "events_url": "https://api.github.com/users/sduenas/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/sduenas/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "body": "As these constants are related to the API client, move them to that class.\n",
+      "created_at": "2016-02-09T15:40:52Z",
+      "updated_at": "2016-02-10T14:01:36Z",
+      "html_url": "https://github.com/chaoss/grimoirelab-perceval/pull/10#discussion_r52324434",
+      "pull_request_url": "https://api.github.com/repos/chaoss/grimoirelab-perceval/pulls/10",
+      "author_association": "MEMBER",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/chaoss/grimoirelab-perceval/pulls/comments/52324434"
+        },
+        "html": {
+          "href": "https://github.com/chaoss/grimoirelab-perceval/pull/10#discussion_r52324434"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/chaoss/grimoirelab-perceval/pulls/10"
+        }
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/chaoss/grimoirelab-perceval/pulls/comments/52324434/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "start_line": null,
+      "original_start_line": null,
+      "start_side": null,
+      "line": null,
+      "original_line": 40,
+      "side": "RIGHT"
+    },
+    {
+      "url": "https://api.github.com/repos/chaoss/grimoirelab-perceval/pulls/comments/52325179",
+      "pull_request_review_id": null,
+      "id": 52325179,
+      "node_id": "MDI0OlB1bGxSZXF1ZXN0UmV2aWV3Q29tbWVudDUyMzI1MTc5",
+      "diff_hunk": "@@ -0,0 +1,296 @@\n+# -*- coding: utf-8 -*-\n+#\n+# Copyright (C) 2016 Bitergia\n+#\n+# This program is free software; you can redistribute it and/or modify\n+# it under the terms of the GNU General Public License as published by\n+# the Free Software Foundation; either version 3 of the License, or\n+# (at your option) any later version.\n+#\n+# This program is distributed in the hope that it will be useful,\n+# but WITHOUT ANY WARRANTY; without even the implied warranty of\n+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n+# GNU General Public License for more details.\n+#\n+# You should have received a copy of the GNU General Public License\n+# along with this program; if not, write to the Free Software\n+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.\n+#\n+# Authors:\n+#   Alberto Martín <alberto.martin@bitergia.com>\n+#\n+\n+import json\n+import logging\n+import os.path\n+\n+import requests\n+import time\n+\n+from ..backend import Backend, BackendCommand, metadata\n+from ..cache import Cache\n+from ..errors import CacheError\n+from ..utils import str_to_datetime, DEFAULT_DATETIME, urljoin\n+\n+# Filters are immutable and non-expiring. This filter allows to retrieve all\n+# the information regarding Each question. To know more, visit\n+# https://api.stackexchange.com/docs/questions and paste the filter in the\n+# whitebox filter. It will display a list of checkboxes with the selected\n+# values for the filter provided.\n+\n+QUESTIONS_FILTER = 'Bf*y*ByQD_upZqozgU6lXL_62USGOoV3)MFNgiHqHpmO_Y-jHR'\n+MAX_QUESTIONS = 100  # Maximum number of reviews per query\n+STACKEXCHANGE_API_URL = 'https://api.stackexchange.com'\n+VERSION_API = '2.2'\n+\n+logger = logging.getLogger(__name__)\n+\n+\n+def get_update_time(item):\n+    \"\"\"Extracts the update time from a StackExchange item\"\"\"\n+    return item['last_activity_date']\n+\n+\n+class StackExchange(Backend):\n+    \"\"\"StackExchange backend for Perceval.\n+\n+    This class retrieves the questions stored in any of the\n+    StackExchange sites. To initialize this class the\n+    site and the tag must be provided.\n+\n+    :param site: StackExchange site\n+    :param tagged: filter items by question Tag\n+    :param token: StackExchange access_token for the API\n+    :param cache: cache object to store raw data\n+    \"\"\"\n+    version = '0.1.0'\n+\n+    def __init__(self, site=None, tagged=None, token=None,",
+      "path": "perceval/backends/stackexchange.py",
+      "position": null,
+      "original_position": 68,
+      "commit_id": "da91b3cfe2b4084c47893024d9c565019f20b030",
+      "original_commit_id": "0491708c08a8c0b849c4dc48d603974b0d408b12",
+      "user": {
+        "login": "sduenas",
+        "id": 833352,
+        "node_id": "MDQ6VXNlcjgzMzM1Mg==",
+        "avatar_url": "https://avatars.githubusercontent.com/u/833352?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/sduenas",
+        "html_url": "https://github.com/sduenas",
+        "followers_url": "https://api.github.com/users/sduenas/followers",
+        "following_url": "https://api.github.com/users/sduenas/following{/other_user}",
+        "gists_url": "https://api.github.com/users/sduenas/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/sduenas/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/sduenas/subscriptions",
+        "organizations_url": "https://api.github.com/users/sduenas/orgs",
+        "repos_url": "https://api.github.com/users/sduenas/repos",
+        "events_url": "https://api.github.com/users/sduenas/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/sduenas/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "body": "According to the doc from above, `site` and `tagged` are mandatory. Then, why do they have a default value?. I guess that `site` is mandatory, but not `tagged` because maybe I want to have all the items without regard to which tag they have.\n",
+      "created_at": "2016-02-09T15:45:21Z",
+      "updated_at": "2016-02-10T14:01:36Z",
+      "html_url": "https://github.com/chaoss/grimoirelab-perceval/pull/10#discussion_r52325179",
+      "pull_request_url": "https://api.github.com/repos/chaoss/grimoirelab-perceval/pulls/10",
+      "author_association": "MEMBER",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/chaoss/grimoirelab-perceval/pulls/comments/52325179"
+        },
+        "html": {
+          "href": "https://github.com/chaoss/grimoirelab-perceval/pull/10#discussion_r52325179"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/chaoss/grimoirelab-perceval/pulls/10"
+        }
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/chaoss/grimoirelab-perceval/pulls/comments/52325179/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "start_line": null,
+      "original_start_line": null,
+      "start_side": null,
+      "line": null,
+      "original_line": 68,
+      "side": "RIGHT"
+    },
+    {
+      "url": "https://api.github.com/repos/chaoss/grimoirelab-perceval/pulls/comments/52325805",
+      "pull_request_review_id": null,
+      "id": 52325805,
+      "node_id": "MDI0OlB1bGxSZXF1ZXN0UmV2aWV3Q29tbWVudDUyMzI1ODA1",
+      "diff_hunk": "@@ -0,0 +1,296 @@\n+# -*- coding: utf-8 -*-\n+#\n+# Copyright (C) 2016 Bitergia\n+#\n+# This program is free software; you can redistribute it and/or modify\n+# it under the terms of the GNU General Public License as published by\n+# the Free Software Foundation; either version 3 of the License, or\n+# (at your option) any later version.\n+#\n+# This program is distributed in the hope that it will be useful,\n+# but WITHOUT ANY WARRANTY; without even the implied warranty of\n+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n+# GNU General Public License for more details.\n+#\n+# You should have received a copy of the GNU General Public License\n+# along with this program; if not, write to the Free Software\n+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.\n+#\n+# Authors:\n+#   Alberto Martín <alberto.martin@bitergia.com>\n+#\n+\n+import json\n+import logging\n+import os.path\n+\n+import requests\n+import time\n+\n+from ..backend import Backend, BackendCommand, metadata\n+from ..cache import Cache\n+from ..errors import CacheError\n+from ..utils import str_to_datetime, DEFAULT_DATETIME, urljoin\n+\n+# Filters are immutable and non-expiring. This filter allows to retrieve all\n+# the information regarding Each question. To know more, visit\n+# https://api.stackexchange.com/docs/questions and paste the filter in the\n+# whitebox filter. It will display a list of checkboxes with the selected\n+# values for the filter provided.\n+\n+QUESTIONS_FILTER = 'Bf*y*ByQD_upZqozgU6lXL_62USGOoV3)MFNgiHqHpmO_Y-jHR'\n+MAX_QUESTIONS = 100  # Maximum number of reviews per query\n+STACKEXCHANGE_API_URL = 'https://api.stackexchange.com'\n+VERSION_API = '2.2'\n+\n+logger = logging.getLogger(__name__)\n+\n+\n+def get_update_time(item):\n+    \"\"\"Extracts the update time from a StackExchange item\"\"\"\n+    return item['last_activity_date']\n+\n+\n+class StackExchange(Backend):\n+    \"\"\"StackExchange backend for Perceval.\n+\n+    This class retrieves the questions stored in any of the\n+    StackExchange sites. To initialize this class the\n+    site and the tag must be provided.\n+\n+    :param site: StackExchange site\n+    :param tagged: filter items by question Tag\n+    :param token: StackExchange access_token for the API\n+    :param cache: cache object to store raw data\n+    \"\"\"\n+    version = '0.1.0'\n+\n+    def __init__(self, site=None, tagged=None, token=None,\n+                 max_questions=None, cache=None):\n+\n+        super().__init__(site, cache=cache)\n+        self.site = site\n+        self.tagged = tagged\n+        self.max_questions = max_questions\n+        self.client = StackExchangeClient(site, tagged, token, max_questions)\n+\n+    @metadata(get_update_time)\n+    def fetch(self, from_date=DEFAULT_DATETIME):\n+        \"\"\"Fetch the questions from the site.\n+\n+        The method retrieves, from a StackExchange site, the\n+        questions updated since the given date.\n+\n+        :param from_date: obtain questions updated since this date\n+\n+        :returns: a generator of questions\n+        \"\"\"\n+        if not from_date:\n+            from_date = DEFAULT_DATETIME\n+\n+        logger.info(\"Looking for questions at site '%s', with tag '%s' and updated from '%s'\",\n+                    self.site, self.tagged, str(from_date))\n+\n+        self._purge_cache_queue()\n+\n+        whole_page = self.client.get_questions(from_date)\n+\n+        for questions in whole_page:\n+            for question in questions:\n+                self._push_cache_queue(question)",
+      "path": "perceval/backends/stackexchange.py",
+      "position": null,
+      "original_position": 100,
+      "commit_id": "da91b3cfe2b4084c47893024d9c565019f20b030",
+      "original_commit_id": "0491708c08a8c0b849c4dc48d603974b0d408b12",
+      "user": {
+        "login": "sduenas",
+        "id": 833352,
+        "node_id": "MDQ6VXNlcjgzMzM1Mg==",
+        "avatar_url": "https://avatars.githubusercontent.com/u/833352?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/sduenas",
+        "html_url": "https://github.com/sduenas",
+        "followers_url": "https://api.github.com/users/sduenas/followers",
+        "following_url": "https://api.github.com/users/sduenas/following{/other_user}",
+        "gists_url": "https://api.github.com/users/sduenas/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/sduenas/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/sduenas/subscriptions",
+        "organizations_url": "https://api.github.com/users/sduenas/orgs",
+        "repos_url": "https://api.github.com/users/sduenas/repos",
+        "events_url": "https://api.github.com/users/sduenas/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/sduenas/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "body": "What it should be stored in the cache is `whole_page` not `question`. This is a misconception of how we implemented backend clients so far. See my comments below on class `StackExchangeClient`.\n",
+      "created_at": "2016-02-09T15:48:53Z",
+      "updated_at": "2016-02-10T14:01:36Z",
+      "html_url": "https://github.com/chaoss/grimoirelab-perceval/pull/10#discussion_r52325805",
+      "pull_request_url": "https://api.github.com/repos/chaoss/grimoirelab-perceval/pulls/10",
+      "author_association": "MEMBER",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/chaoss/grimoirelab-perceval/pulls/comments/52325805"
+        },
+        "html": {
+          "href": "https://github.com/chaoss/grimoirelab-perceval/pull/10#discussion_r52325805"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/chaoss/grimoirelab-perceval/pulls/10"
+        }
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/chaoss/grimoirelab-perceval/pulls/comments/52325805/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "start_line": null,
+      "original_start_line": null,
+      "start_side": null,
+      "line": null,
+      "original_line": 100,
+      "side": "RIGHT"
+    },
+    {
+      "url": "https://api.github.com/repos/chaoss/grimoirelab-perceval/pulls/comments/52328432",
+      "pull_request_review_id": null,
+      "id": 52328432,
+      "node_id": "MDI0OlB1bGxSZXF1ZXN0UmV2aWV3Q29tbWVudDUyMzI4NDMy",
+      "diff_hunk": "@@ -0,0 +1,296 @@\n+# -*- coding: utf-8 -*-\n+#\n+# Copyright (C) 2016 Bitergia\n+#\n+# This program is free software; you can redistribute it and/or modify\n+# it under the terms of the GNU General Public License as published by\n+# the Free Software Foundation; either version 3 of the License, or\n+# (at your option) any later version.\n+#\n+# This program is distributed in the hope that it will be useful,\n+# but WITHOUT ANY WARRANTY; without even the implied warranty of\n+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n+# GNU General Public License for more details.\n+#\n+# You should have received a copy of the GNU General Public License\n+# along with this program; if not, write to the Free Software\n+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.\n+#\n+# Authors:\n+#   Alberto Martín <alberto.martin@bitergia.com>\n+#\n+\n+import json\n+import logging\n+import os.path\n+\n+import requests\n+import time\n+\n+from ..backend import Backend, BackendCommand, metadata\n+from ..cache import Cache\n+from ..errors import CacheError\n+from ..utils import str_to_datetime, DEFAULT_DATETIME, urljoin\n+\n+# Filters are immutable and non-expiring. This filter allows to retrieve all\n+# the information regarding Each question. To know more, visit\n+# https://api.stackexchange.com/docs/questions and paste the filter in the\n+# whitebox filter. It will display a list of checkboxes with the selected\n+# values for the filter provided.\n+\n+QUESTIONS_FILTER = 'Bf*y*ByQD_upZqozgU6lXL_62USGOoV3)MFNgiHqHpmO_Y-jHR'\n+MAX_QUESTIONS = 100  # Maximum number of reviews per query\n+STACKEXCHANGE_API_URL = 'https://api.stackexchange.com'\n+VERSION_API = '2.2'\n+\n+logger = logging.getLogger(__name__)\n+\n+\n+def get_update_time(item):\n+    \"\"\"Extracts the update time from a StackExchange item\"\"\"\n+    return item['last_activity_date']\n+\n+\n+class StackExchange(Backend):\n+    \"\"\"StackExchange backend for Perceval.\n+\n+    This class retrieves the questions stored in any of the\n+    StackExchange sites. To initialize this class the\n+    site and the tag must be provided.\n+\n+    :param site: StackExchange site\n+    :param tagged: filter items by question Tag\n+    :param token: StackExchange access_token for the API\n+    :param cache: cache object to store raw data\n+    \"\"\"\n+    version = '0.1.0'\n+\n+    def __init__(self, site=None, tagged=None, token=None,\n+                 max_questions=None, cache=None):\n+\n+        super().__init__(site, cache=cache)\n+        self.site = site\n+        self.tagged = tagged\n+        self.max_questions = max_questions\n+        self.client = StackExchangeClient(site, tagged, token, max_questions)\n+\n+    @metadata(get_update_time)\n+    def fetch(self, from_date=DEFAULT_DATETIME):\n+        \"\"\"Fetch the questions from the site.\n+\n+        The method retrieves, from a StackExchange site, the\n+        questions updated since the given date.\n+\n+        :param from_date: obtain questions updated since this date\n+\n+        :returns: a generator of questions\n+        \"\"\"\n+        if not from_date:\n+            from_date = DEFAULT_DATETIME\n+\n+        logger.info(\"Looking for questions at site '%s', with tag '%s' and updated from '%s'\",\n+                    self.site, self.tagged, str(from_date))\n+\n+        self._purge_cache_queue()\n+\n+        whole_page = self.client.get_questions(from_date)\n+\n+        for questions in whole_page:\n+            for question in questions:\n+                self._push_cache_queue(question)\n+                self._flush_cache_queue()\n+                yield question\n+\n+    @metadata(get_update_time)\n+    def fetch_from_cache(self):\n+        \"\"\"Fetch the questions from the cache.\n+\n+        :returns: a generator of questions\n+\n+        :raises CacheError: raised when an error occurs accessing the\n+            cache\n+        \"\"\"\n+        if not self.cache:\n+            raise CacheError(cause=\"cache instance was not provided\")\n+\n+        cache_items = self.cache.retrieve()\n+\n+        for question in cache_items:\n+            yield question\n+\n+\n+class StackExchangeClient:\n+    \"\"\"StackExchange API client.\n+\n+    This class implements a simple client to retrieve questions from\n+    any Stackexchange site.\n+\n+    :param site: URL of the Bugzilla server\n+    :param tagged: filter items by question Tag\n+    :param token: StackExchange access_token for the API\n+    :param max_questions: max number of questions per query\n+\n+    :raises HTTPError: when an error occurs doing the request\n+    \"\"\"\n+\n+    def __init__(self, site, tagged, token, max_questions):\n+        self.site = site\n+        self.tagged = tagged\n+        self.token = token\n+        self.max_questions = max_questions\n+        self.version = VERSION_API\n+\n+    def __build_base_url(self, type='questions'):\n+        base_api_url = STACKEXCHANGE_API_URL\n+        base_api_url = urljoin(base_api_url, self.version, type)\n+        return base_api_url\n+\n+    def __build_payload(self, page, from_date, order='desc', sort='activity'):\n+        payload = {'page': page,\n+                   'pagesize': self.max_questions,\n+                   'order': order,\n+                   'sort': sort,\n+                   'tagged': self.tagged,\n+                   'site': self.site,\n+                   'key': self.token,\n+                   'filter': QUESTIONS_FILTER}\n+        if from_date:\n+            timestamp = int(time.mktime(from_date.timetuple()))\n+            payload['min'] = timestamp\n+        return payload\n+\n+    def __log_status(self, quota_remaining, quota_max, page_size, total):\n+\n+        logger.info(\"Rate limit: %s/%s\" % (quota_remaining,\n+                                           quota_max))\n+        if (total != 0):\n+            if (total <= page_size):\n+                logger.info(\"Fetching questions: %s/%s\" % (total,\n+                                                           total))\n+            else:\n+                logger.info(\"Fetching questions: %s/%s\" % (page_size,\n+                                                           total))\n+        else:\n+            logger.info(\"No questions were found.\")\n+\n+    def get_questions(self, from_date):\n+        \"\"\"Retrieve all the questions from a given date.\n+\n+        :param from_date: obtain questions updated since this date\n+        \"\"\"\n+\n+        page = 1\n+        req = requests.get(self.__build_base_url(),\n+                           params=self.__build_payload(page, from_date))\n+        req.raise_for_status()\n+        questions = req.json()['items']\n+\n+        if (req.json()['page_size'] >= req.json()['total']):\n+            fetched = req.json()['total']\n+        else:\n+            fetched = req.json()['page_size']\n+\n+        self.__log_status(req.json()['quota_remaining'],\n+                          req.json()['quota_max'],\n+                          fetched,\n+                          req.json()['total'])\n+\n+        while questions:",
+      "path": "perceval/backends/stackexchange.py",
+      "position": null,
+      "original_position": 198,
+      "commit_id": "da91b3cfe2b4084c47893024d9c565019f20b030",
+      "original_commit_id": "0491708c08a8c0b849c4dc48d603974b0d408b12",
+      "user": {
+        "login": "sduenas",
+        "id": 833352,
+        "node_id": "MDQ6VXNlcjgzMzM1Mg==",
+        "avatar_url": "https://avatars.githubusercontent.com/u/833352?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/sduenas",
+        "html_url": "https://github.com/sduenas",
+        "followers_url": "https://api.github.com/users/sduenas/followers",
+        "following_url": "https://api.github.com/users/sduenas/following{/other_user}",
+        "gists_url": "https://api.github.com/users/sduenas/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/sduenas/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/sduenas/subscriptions",
+        "organizations_url": "https://api.github.com/users/sduenas/orgs",
+        "repos_url": "https://api.github.com/users/sduenas/repos",
+        "events_url": "https://api.github.com/users/sduenas/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/sduenas/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "body": "This whole loop has to be outside, in the backen class. This is not the duty of the client, it's the duty of the backend to know when it has to asks for more items. The rationale behind this it's we want to have clients that can be used to ask for anything (for instance, to ask for the third page of a certain set of questions without having to start from the first page). This make the code reusable by others and easier to maintain and to fix.\n",
+      "created_at": "2016-02-09T16:04:25Z",
+      "updated_at": "2016-02-10T14:01:36Z",
+      "html_url": "https://github.com/chaoss/grimoirelab-perceval/pull/10#discussion_r52328432",
+      "pull_request_url": "https://api.github.com/repos/chaoss/grimoirelab-perceval/pulls/10",
+      "author_association": "MEMBER",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/chaoss/grimoirelab-perceval/pulls/comments/52328432"
+        },
+        "html": {
+          "href": "https://github.com/chaoss/grimoirelab-perceval/pull/10#discussion_r52328432"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/chaoss/grimoirelab-perceval/pulls/10"
+        }
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/chaoss/grimoirelab-perceval/pulls/comments/52328432/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "start_line": null,
+      "original_start_line": null,
+      "start_side": null,
+      "line": 212,
+      "original_line": 198,
+      "side": "RIGHT"
+    },
+    {
+      "url": "https://api.github.com/repos/chaoss/grimoirelab-perceval/pulls/comments/52333925",
+      "pull_request_review_id": null,
+      "id": 52333925,
+      "node_id": "MDI0OlB1bGxSZXF1ZXN0UmV2aWV3Q29tbWVudDUyMzMzOTI1",
+      "diff_hunk": "@@ -0,0 +1,296 @@\n+# -*- coding: utf-8 -*-\n+#\n+# Copyright (C) 2016 Bitergia\n+#\n+# This program is free software; you can redistribute it and/or modify\n+# it under the terms of the GNU General Public License as published by\n+# the Free Software Foundation; either version 3 of the License, or\n+# (at your option) any later version.\n+#\n+# This program is distributed in the hope that it will be useful,\n+# but WITHOUT ANY WARRANTY; without even the implied warranty of\n+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n+# GNU General Public License for more details.\n+#\n+# You should have received a copy of the GNU General Public License\n+# along with this program; if not, write to the Free Software\n+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.\n+#\n+# Authors:\n+#   Alberto Martín <alberto.martin@bitergia.com>\n+#\n+\n+import json\n+import logging\n+import os.path\n+\n+import requests\n+import time\n+\n+from ..backend import Backend, BackendCommand, metadata\n+from ..cache import Cache\n+from ..errors import CacheError\n+from ..utils import str_to_datetime, DEFAULT_DATETIME, urljoin\n+\n+# Filters are immutable and non-expiring. This filter allows to retrieve all\n+# the information regarding Each question. To know more, visit\n+# https://api.stackexchange.com/docs/questions and paste the filter in the\n+# whitebox filter. It will display a list of checkboxes with the selected\n+# values for the filter provided.\n+\n+QUESTIONS_FILTER = 'Bf*y*ByQD_upZqozgU6lXL_62USGOoV3)MFNgiHqHpmO_Y-jHR'\n+MAX_QUESTIONS = 100  # Maximum number of reviews per query\n+STACKEXCHANGE_API_URL = 'https://api.stackexchange.com'\n+VERSION_API = '2.2'\n+\n+logger = logging.getLogger(__name__)\n+\n+\n+def get_update_time(item):\n+    \"\"\"Extracts the update time from a StackExchange item\"\"\"\n+    return item['last_activity_date']\n+\n+\n+class StackExchange(Backend):\n+    \"\"\"StackExchange backend for Perceval.\n+\n+    This class retrieves the questions stored in any of the\n+    StackExchange sites. To initialize this class the\n+    site and the tag must be provided.\n+\n+    :param site: StackExchange site\n+    :param tagged: filter items by question Tag\n+    :param token: StackExchange access_token for the API\n+    :param cache: cache object to store raw data\n+    \"\"\"\n+    version = '0.1.0'\n+\n+    def __init__(self, site=None, tagged=None, token=None,\n+                 max_questions=None, cache=None):\n+\n+        super().__init__(site, cache=cache)\n+        self.site = site\n+        self.tagged = tagged\n+        self.max_questions = max_questions\n+        self.client = StackExchangeClient(site, tagged, token, max_questions)\n+\n+    @metadata(get_update_time)\n+    def fetch(self, from_date=DEFAULT_DATETIME):\n+        \"\"\"Fetch the questions from the site.\n+\n+        The method retrieves, from a StackExchange site, the\n+        questions updated since the given date.\n+\n+        :param from_date: obtain questions updated since this date\n+\n+        :returns: a generator of questions\n+        \"\"\"\n+        if not from_date:\n+            from_date = DEFAULT_DATETIME\n+\n+        logger.info(\"Looking for questions at site '%s', with tag '%s' and updated from '%s'\",\n+                    self.site, self.tagged, str(from_date))\n+\n+        self._purge_cache_queue()\n+\n+        whole_page = self.client.get_questions(from_date)\n+\n+        for questions in whole_page:\n+            for question in questions:\n+                self._push_cache_queue(question)\n+                self._flush_cache_queue()\n+                yield question\n+\n+    @metadata(get_update_time)\n+    def fetch_from_cache(self):\n+        \"\"\"Fetch the questions from the cache.\n+\n+        :returns: a generator of questions\n+\n+        :raises CacheError: raised when an error occurs accessing the\n+            cache\n+        \"\"\"\n+        if not self.cache:\n+            raise CacheError(cause=\"cache instance was not provided\")\n+\n+        cache_items = self.cache.retrieve()\n+\n+        for question in cache_items:\n+            yield question\n+\n+\n+class StackExchangeClient:\n+    \"\"\"StackExchange API client.\n+\n+    This class implements a simple client to retrieve questions from\n+    any Stackexchange site.\n+\n+    :param site: URL of the Bugzilla server\n+    :param tagged: filter items by question Tag\n+    :param token: StackExchange access_token for the API\n+    :param max_questions: max number of questions per query\n+\n+    :raises HTTPError: when an error occurs doing the request\n+    \"\"\"\n+\n+    def __init__(self, site, tagged, token, max_questions):\n+        self.site = site\n+        self.tagged = tagged\n+        self.token = token\n+        self.max_questions = max_questions\n+        self.version = VERSION_API\n+\n+    def __build_base_url(self, type='questions'):\n+        base_api_url = STACKEXCHANGE_API_URL\n+        base_api_url = urljoin(base_api_url, self.version, type)\n+        return base_api_url\n+\n+    def __build_payload(self, page, from_date, order='desc', sort='activity'):\n+        payload = {'page': page,\n+                   'pagesize': self.max_questions,\n+                   'order': order,\n+                   'sort': sort,\n+                   'tagged': self.tagged,\n+                   'site': self.site,\n+                   'key': self.token,\n+                   'filter': QUESTIONS_FILTER}\n+        if from_date:\n+            timestamp = int(time.mktime(from_date.timetuple()))\n+            payload['min'] = timestamp\n+        return payload\n+\n+    def __log_status(self, quota_remaining, quota_max, page_size, total):\n+\n+        logger.info(\"Rate limit: %s/%s\" % (quota_remaining,\n+                                           quota_max))\n+        if (total != 0):\n+            if (total <= page_size):\n+                logger.info(\"Fetching questions: %s/%s\" % (total,\n+                                                           total))\n+            else:\n+                logger.info(\"Fetching questions: %s/%s\" % (page_size,\n+                                                           total))\n+        else:\n+            logger.info(\"No questions were found.\")\n+\n+    def get_questions(self, from_date):\n+        \"\"\"Retrieve all the questions from a given date.\n+\n+        :param from_date: obtain questions updated since this date\n+        \"\"\"\n+\n+        page = 1\n+        req = requests.get(self.__build_base_url(),\n+                           params=self.__build_payload(page, from_date))\n+        req.raise_for_status()\n+        questions = req.json()['items']\n+\n+        if (req.json()['page_size'] >= req.json()['total']):\n+            fetched = req.json()['total']\n+        else:\n+            fetched = req.json()['page_size']\n+\n+        self.__log_status(req.json()['quota_remaining'],\n+                          req.json()['quota_max'],\n+                          fetched,\n+                          req.json()['total'])\n+\n+        while questions:",
+      "path": "perceval/backends/stackexchange.py",
+      "position": null,
+      "original_position": 198,
+      "commit_id": "da91b3cfe2b4084c47893024d9c565019f20b030",
+      "original_commit_id": "0491708c08a8c0b849c4dc48d603974b0d408b12",
+      "user": {
+        "login": "sduenas",
+        "id": 833352,
+        "node_id": "MDQ6VXNlcjgzMzM1Mg==",
+        "avatar_url": "https://avatars.githubusercontent.com/u/833352?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/sduenas",
+        "html_url": "https://github.com/sduenas",
+        "followers_url": "https://api.github.com/users/sduenas/followers",
+        "following_url": "https://api.github.com/users/sduenas/following{/other_user}",
+        "gists_url": "https://api.github.com/users/sduenas/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/sduenas/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/sduenas/subscriptions",
+        "organizations_url": "https://api.github.com/users/sduenas/orgs",
+        "repos_url": "https://api.github.com/users/sduenas/repos",
+        "events_url": "https://api.github.com/users/sduenas/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/sduenas/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "body": "Ok. After all talk, you're right that it has more sense to return all the items related to a query because modern APIs allow us to do so in an easy way. The only thing here is you have to return the raw response with the `yield` statement:\n\n``` python\nreq = requests.get(self.__build_base_url(),\n                   params=self.__build_payload(page, from_date))\nquestions = req.text\n\nwhile questions:\n    yield questions\n\n    data = req.json()\n    if data['has_more']:\n        # do the next requests\n       [...]\n```\n",
+      "created_at": "2016-02-09T16:36:25Z",
+      "updated_at": "2016-02-10T14:01:36Z",
+      "html_url": "https://github.com/chaoss/grimoirelab-perceval/pull/10#discussion_r52333925",
+      "pull_request_url": "https://api.github.com/repos/chaoss/grimoirelab-perceval/pulls/10",
+      "author_association": "MEMBER",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/chaoss/grimoirelab-perceval/pulls/comments/52333925"
+        },
+        "html": {
+          "href": "https://github.com/chaoss/grimoirelab-perceval/pull/10#discussion_r52333925"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/chaoss/grimoirelab-perceval/pulls/10"
+        }
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/chaoss/grimoirelab-perceval/pulls/comments/52333925/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "start_line": null,
+      "original_start_line": null,
+      "start_side": null,
+      "line": 212,
+      "original_line": 198,
+      "side": "RIGHT"
+    }
+  ]
