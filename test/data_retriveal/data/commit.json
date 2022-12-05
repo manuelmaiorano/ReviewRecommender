@@ -1,0 +1,146 @@
+{
+    "sha": "f7cec4254eac3e10c4c75d54b9d5c4d6d88ccd6e",
+    "node_id": "C_kwDOAtN_UNoAKGY3Y2VjNDI1NGVhYzNlMTBjNGM3NWQ1NGI5ZDVjNGQ2ZDg4Y2NkNmU",
+    "commit": {
+      "author": {
+        "name": "Santiago Dueñas",
+        "email": "sduenas@bitergia.com",
+        "date": "2022-11-07T09:00:33Z"
+      },
+      "committer": {
+        "name": "Santiago Dueñas",
+        "email": "sduenas@bitergia.com",
+        "date": "2022-11-07T09:00:33Z"
+      },
+      "message": "Release 0.21.1",
+      "tree": {
+        "sha": "8b9c2a268ed351961ce634403a0306803e938ad2",
+        "url": "https://api.github.com/repos/chaoss/grimoirelab-perceval/git/trees/8b9c2a268ed351961ce634403a0306803e938ad2"
+      },
+      "url": "https://api.github.com/repos/chaoss/grimoirelab-perceval/git/commits/f7cec4254eac3e10c4c75d54b9d5c4d6d88ccd6e",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/chaoss/grimoirelab-perceval/commits/f7cec4254eac3e10c4c75d54b9d5c4d6d88ccd6e",
+    "html_url": "https://github.com/chaoss/grimoirelab-perceval/commit/f7cec4254eac3e10c4c75d54b9d5c4d6d88ccd6e",
+    "comments_url": "https://api.github.com/repos/chaoss/grimoirelab-perceval/commits/f7cec4254eac3e10c4c75d54b9d5c4d6d88ccd6e/comments",
+    "author": {
+      "login": "sduenas",
+      "id": 833352,
+      "node_id": "MDQ6VXNlcjgzMzM1Mg==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/833352?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/sduenas",
+      "html_url": "https://github.com/sduenas",
+      "followers_url": "https://api.github.com/users/sduenas/followers",
+      "following_url": "https://api.github.com/users/sduenas/following{/other_user}",
+      "gists_url": "https://api.github.com/users/sduenas/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/sduenas/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/sduenas/subscriptions",
+      "organizations_url": "https://api.github.com/users/sduenas/orgs",
+      "repos_url": "https://api.github.com/users/sduenas/repos",
+      "events_url": "https://api.github.com/users/sduenas/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/sduenas/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "sduenas",
+      "id": 833352,
+      "node_id": "MDQ6VXNlcjgzMzM1Mg==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/833352?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/sduenas",
+      "html_url": "https://github.com/sduenas",
+      "followers_url": "https://api.github.com/users/sduenas/followers",
+      "following_url": "https://api.github.com/users/sduenas/following{/other_user}",
+      "gists_url": "https://api.github.com/users/sduenas/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/sduenas/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/sduenas/subscriptions",
+      "organizations_url": "https://api.github.com/users/sduenas/orgs",
+      "repos_url": "https://api.github.com/users/sduenas/repos",
+      "events_url": "https://api.github.com/users/sduenas/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/sduenas/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "c3fdcc808e48cf5e2765e0a81c7e898932b8653a",
+        "url": "https://api.github.com/repos/chaoss/grimoirelab-perceval/commits/c3fdcc808e48cf5e2765e0a81c7e898932b8653a",
+        "html_url": "https://github.com/chaoss/grimoirelab-perceval/commit/c3fdcc808e48cf5e2765e0a81c7e898932b8653a"
+      }
+    ],
+    "stats": {
+      "total": 31,
+      "additions": 20,
+      "deletions": 11
+    },
+    "files": [
+      {
+        "sha": "a1c51ee3373a0c06e1562c61452a256334ea9723",
+        "filename": "NEWS",
+        "status": "modified",
+        "additions": 9,
+        "deletions": 0,
+        "changes": 9,
+        "blob_url": "https://github.com/chaoss/grimoirelab-perceval/blob/f7cec4254eac3e10c4c75d54b9d5c4d6d88ccd6e/NEWS",
+        "raw_url": "https://github.com/chaoss/grimoirelab-perceval/raw/f7cec4254eac3e10c4c75d54b9d5c4d6d88ccd6e/NEWS",
+        "contents_url": "https://api.github.com/repos/chaoss/grimoirelab-perceval/contents/NEWS?ref=f7cec4254eac3e10c4c75d54b9d5c4d6d88ccd6e",
+        "patch": "@@ -1,5 +1,14 @@\n # Releases\n \n+## perceval 0.21.1 - (2022-11-07)\n+\n+**Bug fixes:**\n+\n+ * Mbox to-date argument fixed\\\n+   It fixes the `--to-date` argument. This parameter was added to fetch\n+   data until a specific date.\n+\n+\n ## perceval 0.21.0 - (2022-10-31)\n \n **New features:**"
+      },
+      {
+        "sha": "7b47b932a2dcd30a2046c5672f5bdd5c9c40c37f",
+        "filename": "perceval/_version.py",
+        "status": "modified",
+        "additions": 2,
+        "deletions": 2,
+        "changes": 4,
+        "blob_url": "https://github.com/chaoss/grimoirelab-perceval/blob/f7cec4254eac3e10c4c75d54b9d5c4d6d88ccd6e/perceval%2F_version.py",
+        "raw_url": "https://github.com/chaoss/grimoirelab-perceval/raw/f7cec4254eac3e10c4c75d54b9d5c4d6d88ccd6e/perceval%2F_version.py",
+        "contents_url": "https://api.github.com/repos/chaoss/grimoirelab-perceval/contents/perceval%2F_version.py?ref=f7cec4254eac3e10c4c75d54b9d5c4d6d88ccd6e",
+        "patch": "@@ -1,2 +1,2 @@\n-# File auto-generated by semverup on 2022-10-31 09:06:44.828375\n-__version__ = \"0.21.0\"\n+# File auto-generated by semverup on 2022-11-07 09:00:32.375977\n+__version__ = \"0.21.1\""
+      },
+      {
+        "sha": "ca39504b8e5754ee4bdb577404ce0fb988440e02",
+        "filename": "pyproject.toml",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1,
+        "changes": 2,
+        "blob_url": "https://github.com/chaoss/grimoirelab-perceval/blob/f7cec4254eac3e10c4c75d54b9d5c4d6d88ccd6e/pyproject.toml",
+        "raw_url": "https://github.com/chaoss/grimoirelab-perceval/raw/f7cec4254eac3e10c4c75d54b9d5c4d6d88ccd6e/pyproject.toml",
+        "contents_url": "https://api.github.com/repos/chaoss/grimoirelab-perceval/contents/pyproject.toml?ref=f7cec4254eac3e10c4c75d54b9d5c4d6d88ccd6e",
+        "patch": "@@ -1,6 +1,6 @@\n [tool.poetry]\n name = \"perceval\"\n-version = \"0.21.0\"\n+version = \"0.21.1\"\n description = \"Send Sir Perceval on a quest to fetch and gather data from software repositories.\"\n authors = [\n     \"GrimoireLab Developers\""
+      },
+      {
+        "sha": "85334a1f1c2b898d0c00a70e77b43b740ba8fced",
+        "filename": "releases/0.21.1.md",
+        "status": "added",
+        "additions": 8,
+        "deletions": 0,
+        "changes": 8,
+        "blob_url": "https://github.com/chaoss/grimoirelab-perceval/blob/f7cec4254eac3e10c4c75d54b9d5c4d6d88ccd6e/releases%2F0.21.1.md",
+        "raw_url": "https://github.com/chaoss/grimoirelab-perceval/raw/f7cec4254eac3e10c4c75d54b9d5c4d6d88ccd6e/releases%2F0.21.1.md",
+        "contents_url": "https://api.github.com/repos/chaoss/grimoirelab-perceval/contents/releases%2F0.21.1.md?ref=f7cec4254eac3e10c4c75d54b9d5c4d6d88ccd6e",
+        "patch": "@@ -0,0 +1,8 @@\n+## perceval 0.21.1 - (2022-11-07)\n+\n+**Bug fixes:**\n+\n+ * Mbox to-date argument fixed\\\n+   It fixes the `--to-date` argument. This parameter was added to fetch\n+   data until a specific date.\n+"
+      },
+      {
+        "sha": "f5351a84aeefe77ed313ddf68113f7ba70bf7a44",
+        "filename": "releases/unreleased/mbox-to-date-argument-fixed.yml",
+        "status": "removed",
+        "additions": 0,
+        "deletions": 8,
+        "changes": 8,
+        "blob_url": "https://github.com/chaoss/grimoirelab-perceval/blob/c3fdcc808e48cf5e2765e0a81c7e898932b8653a/releases%2Funreleased%2Fmbox-to-date-argument-fixed.yml",
+        "raw_url": "https://github.com/chaoss/grimoirelab-perceval/raw/c3fdcc808e48cf5e2765e0a81c7e898932b8653a/releases%2Funreleased%2Fmbox-to-date-argument-fixed.yml",
+        "contents_url": "https://api.github.com/repos/chaoss/grimoirelab-perceval/contents/releases%2Funreleased%2Fmbox-to-date-argument-fixed.yml?ref=c3fdcc808e48cf5e2765e0a81c7e898932b8653a",
+        "patch": "@@ -1,8 +0,0 @@\n----\n-title: Mbox to-date argument fixed\n-category: fixed\n-author: Quan Zhou <quan@bitergia.com>\n-issue: null\n-notes: >\n-    It fixes the `--to-date` argument. This parameter was added to\n-    fetch data until a specific date."
+      }
+    ]
+  }
