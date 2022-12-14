@@ -1,9 +1,11 @@
+from __future__ import annotations
 import requests
 from dataclasses import dataclass
 from datetime import datetime
 import pytz
 import base64
 import math
+
 
 class RepoRetriveal:
     @dataclass
@@ -30,19 +32,22 @@ class RepoRetriveal:
     class RepoFile:
         filepath: str
         content: str
-    
+
     def __init__(self, owner, repo, token=None):
         self.owner = owner
         self.repo = repo
         self.token = token
         self.base_url = f'https://api.github.com/repos/{owner}/{repo}'
         self.headers = {"Accept": "application/vnd.github+json"}
-        if token: self.headers["Authorization"] = f"Bearer {token}"
+        if token:
+            self.headers["Authorization"] = f"Bearer {token}"
         self.s = requests.Session()
         self.timeout = 10
 
     def getFromUrl(self, url, params=None):
-        r = self.s.get(url, headers=self.headers, params=params, timeout=self.timeout)
+        r = self.s.get(url, headers=self.headers,
+                       params=params,
+                       timeout=self.timeout)
         r.raise_for_status()
         return r.json()
 
@@ -61,7 +66,8 @@ class RepoRetriveal:
         for comment in data:
             commenters.append(comment['user']['login'])
 
-        return RepoRetriveal.PullRequest(number, author_login, commenters, date)
+        return RepoRetriveal.PullRequest(number, author_login,
+                                         commenters, date)
 
     def getCommitBySha(self, sha):
         commit_url = f'{self.base_url}/commits/{sha}'
@@ -82,7 +88,7 @@ class RepoRetriveal:
         date_str = toDate.isoformat()[:-6]+'Z'
 
         if numberOfCommits <= MAX_PER_PAGE:
-            commitsPerPage = numberOfCommits 
+            commitsPerPage = numberOfCommits
             numOfPages = 1
         else:
             commitsPerPage = MAX_PER_PAGE
@@ -91,7 +97,9 @@ class RepoRetriveal:
         currentPage = 1
         currentNumOfCommits = 0
         while currentPage <= numOfPages:
-            params={'until': date_str, 'per_page': commitsPerPage, 'page': currentPage}
+            params = {'until': date_str,
+                      'per_page': commitsPerPage,
+                      'page': currentPage}
             data = self.getFromUrl(commit_url, params=params)
 
             for item in data:
@@ -113,8 +121,7 @@ class RepoRetriveal:
                 continue
             yield pull
 
-
-    def getPullFiles(self, pull: PullRequest):  
+    def getPullFiles(self, pull: PullRequest):
         files_url = f'{self.base_url}/pulls/{str(pull.number)}/files'
         data = self.getFromUrl(files_url)
         return self.getFileContentList(data)
@@ -128,8 +135,11 @@ class RepoRetriveal:
             content_url = item['contents_url']
             file_data = self.getFromUrl(content_url)
             raw_content = file_data['content']
-            decoded_content = base64.b64decode(raw_content).decode('utf-8')
+            try:
+                decoded_content = base64.b64decode(raw_content).decode('utf-8')
+            except UnicodeDecodeError:
+                continue
             file = RepoRetriveal.RepoFile(item['filename'], decoded_content)
             files.append(file)
-        
+
         return files
