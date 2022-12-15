@@ -8,13 +8,12 @@ class Tokenizer:
         method_pattern = re.compile(r'def\s+(\w+)\(')
         method_dict = {}
         for file in file_list:
-            with open(file, 'r') as f:
-                file_content = f.read()
-                for method_name in method_pattern.findall(file_content):
-                    if method_name in method_dict:
-                        method_dict[method_name] += 1
-                    else:
-                        method_dict[method_name] = 1
+            file_content = file.content
+            for method_name in method_pattern.findall(file_content):
+                if method_name in method_dict:
+                    method_dict[method_name] += 1
+                else:
+                    method_dict[method_name] = 1
         return method_dict
 
     @staticmethod
@@ -23,13 +22,12 @@ class Tokenizer:
         class_pattern = re.compile(r'class\s+(\w+)(?:\(.*\))?\s?:')
         class_dict = {}
         for file in file_list:
-            with open(file, 'r') as f:
-                file_content = f.read()
-                for class_name in class_pattern.findall(file_content):
-                    if class_name in class_dict:
-                        class_dict[class_name] += 1
-                    else:
-                        class_dict[class_name] = 1
+            file_content = file.content
+            for class_name in class_pattern.findall(file_content):
+                if class_name in class_dict:
+                    class_dict[class_name] += 1
+                else:
+                    class_dict[class_name] = 1
         return class_dict
 
     @staticmethod
