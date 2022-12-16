@@ -1,70 +1,78 @@
 import math
 from dataclasses import dataclass
-from decimal import Decimal
-import uuid
 
 
 @dataclass
-class DocumentReference:
-    file: str
-    length: Decimal
+class ItemReference:
+    item: object
+    length_squared: float
 
+    def __hash__(self) -> int:
+        return self.item.__hash__()
 
 @dataclass
 class TokenOccurence:
-    doc_ref: DocumentReference
+    item_ref: ItemReference
     count: int
 
 
 @dataclass
 class TokenInfo:
-    idf: Decimal
+    idf: float
     occ_list: list[TokenOccurence]
 
-    def __init__(self):
-        self.occ_list = []
 
-
-class InvertedFiles:
+class InvertedFile:
 
     def __init__(self):
-        self.hash_map = {}
+        self.token2Items: dict[str, TokenInfo] = {}
+        self.totalItems = 0
 
     def add(self, item, token_freq: dict[str, int]):
-        files = item.getFiles()
-        for file in files:
-            for key in token_freq:
-                if self.hash_map.get(key) in None:
-                    token_info = TokenInfo()
-                    self.hash_map[key] = token_info
-                    doc_ref = DocumentReference()
-                    doc_ref.file = file
-                    token_occurence = TokenOccurence()
-                    token_occurence.doc_ref = doc_ref
-                    token_info.occ_list.append(token_occurence)
+        for token, count in token_freq.items():
+            if not token in self.token2Items:
+                self.token2Items[token] = TokenInfo(idf=0, occ_list=[])
+            itemRef = ItemReference(item, length_squared=0)
+            self.token2Items[token].occ_list.append(TokenOccurence(itemRef, count))
+            self.totalItems += 1
 
-    @staticmethod
-    def calculateIDF(files):
-        files_len = len(files)
+    def calculateIDF(self):
+        for tokenInfo in self.token2Items.values():
+            tokenInfo.idf = math.log2(self.totalItems/len(tokenInfo.occ_list))
+        
+        for tokenInfo in self.token2Items.values():
+            idf = tokenInfo.idf
+            for tokenOccurrence in tokenInfo.occ_list:
+                count = tokenOccurrence.count
+                tokenOccurrence.item_ref.length_squared += (idf * count)**2
 
-        idf_dict = dict.fromkeys(files[0].keys(), 0)
-        for document in files:
-            for token, val in document.items():
-                if val > 0:
-                    idf_dict[token] += 1
+    def getSimilar(self, tokenFreqs):
+        retrievedRef2score: dict[ItemReference, float] = {}
+        token2weights = {}
+        for token, count in tokenFreqs.items():
+            if not token in self.token2Items: continue
+            tokenInfo = self.token2Items[token]
+            idf = tokenInfo.idf
+            weight = count * idf
+            token2weights[token] = weight
+            occList = tokenInfo.occ_list
+            for occurrence in occList:
+                itemRef = occurrence.item_ref
+                countInItem = occurrence.count
+                if not itemRef in retrievedRef2score: retrievedRef2score[itemRef] = 0
+                retrievedRef2score[itemRef] += weight * idf * countInItem
 
-        for token, val in idf_dict.items():
-            idf_dict[token] = math.log(files_len / float(val))
+        queryLengthSquared = 0
+        for token, weight in token2weights.items():
+            queryLengthSquared += weight**2
+        queryLength = math.sqrt(queryLengthSquared)
 
-        return idf_dict
-
-    @staticmethod
-    def getCosineSimilarity(value1, value2):
-        sum1, sum2, sum3 = 0, 0, 0
-        for i in range(len(value1)):
-            x = value1[i]
-            y = value2[i]
-            sum1 += x * x
-            sum3 += y * y
-            sum2 += x * y
-        return sum2 / math.sqrt(sum1 * sum3)
+        retrievedItem2score = {}
+        for retrieved, score in retrievedRef2score.items():
+            length = math.sqrt(retrieved.length_squared)
+            retrievedItem2score[retrieved.item] = score/(queryLength * length)
+        
+        return retrievedItem2score
+    
+    def dump(self):
+        print(self.token2Items.keys())
