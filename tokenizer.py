@@ -6,8 +6,7 @@ class Tokenizer:
     
     @staticmethod
     def getTokenFreqs(file_list: list[RepoRetriveal.RepoFile]):
-        import_pattern = re.compile('import +(.*?)[ \r\n]')
-        class_pattern = re.compile(r'class\s+(\w+)(?:\(.*\))?\s?:')
+        import_pattern = re.compile(r'^\s*(?:from|import)\s+([\w\.]+(?:\s*,\s*\w+)*)', re.MULTILINE)
         tokenFreqs = defaultdict(lambda: 0)
         for file in file_list:
             tokens = file.filepath.split('/')
@@ -20,9 +19,5 @@ class Tokenizer:
             for match in matches:
                 for token in match.split('.'):
                     tokenFreqs[token] += 1
-            
-            matches = class_pattern.findall(file.content)
-            for match in matches:
-                tokenFreqs[match] += 1
 
         return tokenFreqs
