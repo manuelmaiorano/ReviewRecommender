@@ -26,12 +26,4 @@ class Scorer:
 
         return finalString
 
-if __name__ == '__main__':
-    scorer = Scorer()
-    scorer.addReviewerScore('man1', 23.4545)
-    scorer.addReviewerScore('mano0o0', 245.45)
-    scorer.addReviewerScore('manko1', 2.4545)
-    scorer.addReviewerScore('manui', 23.445)
-    print(scorer.prettyFormat())
-
 
