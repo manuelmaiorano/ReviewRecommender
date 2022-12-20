@@ -31,11 +31,11 @@ jobs:
           flake8 --count --select=E9,F63,F7,F82 --show-source --statistics
           # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
           flake8 --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-        working_directory: ${{env.working-directory}}
+        working-directory: ${{env.working-directory}}
       - name: Test with pytest
         run: |
           python -m pytest ../test --junitxml=junit/test-results-${{ matrix.python-version }}.xml
-        working_directory: ${{env.working-directory}}
+        working-directory: ${{env.working-directory}}
       - name: Upload test results
         uses: actions/upload-artifact@v3
         with:
@@ -46,7 +46,7 @@ jobs:
         run: |
           coverage run -m pytest ../test
           coverage xml
-        working_directory: ${{env.working-directory}}
+        working-directory: ${{env.working-directory}}
       - name: Upload coverage report
         uses: actions/upload-artifact@v3
         with:
