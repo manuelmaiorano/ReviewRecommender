@@ -23,15 +23,18 @@ jobs:
           python -m pip install --upgrade pip
           pip install flake8 pytest coverage
           pip install -r requirements.txt
+      -name: Change to src directory
+        run: |
+          cd src
       - name: Lint with flake8
         run: |
           # stop the build if there are Python syntax errors or undefined names
-          flake8 --count --select=E9,F63,F7,F82 --show-source --statistics data_retriveal.py scorer.py
+          flake8 --count --select=E9,F63,F7,F82 --show-source --statistics
           # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-          flake8 --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics data_retriveal.py scorer.py
+          flake8 --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
       - name: Test with pytest
         run: |
-          python -m pytest --junitxml=junit/test-results-${{ matrix.python-version }}.xml
+          python -m pytest ..\test --junitxml=junit/test-results-${{ matrix.python-version }}.xml
       - name: Upload test results
         uses: actions/upload-artifact@v3
         with:
@@ -40,7 +43,7 @@ jobs:
         if: ${{ always() }}
       - name: Evaluate coverage
         run: |
-          coverage run -m pytest 
+          coverage run -m pytest ..\test
           coverage xml
       - name: Upload coverage report
         uses: actions/upload-artifact@v3
