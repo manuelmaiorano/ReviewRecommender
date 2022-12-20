@@ -1,33 +1,62 @@
 from __future__ import annotations
+from enum import Enum
 import re
 from collections import defaultdict
 from data_retriveal import RepoRetriveal
 
 class Tokenizer:
 
-    PHYTHONREGEX = r"^\s*from\s+(\w+)\s+import\s+([\w\.]+(?:\s*,\s*\w+)*)|\
-                    ^\s*import\s+([\w\.]+(?:\s*,\s*\w+)*)"
+    class LANGUAGES(Enum):
+        PYTHON = 1
+        JAVA = 2
+        C_CPP = 3
+
+    PHYTHONREGEX = r'^\s*from\s+(\w+)\s+import\s+([\w\.]+(?:\s*,\s*\w+)*)' + '|' + \
+                   r'^\s*import\s+([\w\.]+(?:\s*,\s*\w+)*)'
+    JAVAREGEX = r'^\s*import\s+([\w\.]+)\s*;|^\s*package\s+([\w\.]+)\s*;'
+    CPPREGEX = r'^\s*#include\s*[<\"]([\w\\/]+)\.*h*[>\"]'
+
+    LANGUAGE2REGEX = {LANGUAGES.JAVA: JAVAREGEX,
+                      LANGUAGES.PYTHON: PHYTHONREGEX,
+                      LANGUAGES.C_CPP: CPPREGEX}
+
+    EXTENSION2LANGUAGE = {'.java': LANGUAGES.JAVA,
+                          '.py': LANGUAGES.PYTHON}
     
+    for cpp_extension in ['.c', '.h', '.cpp', '.cc', '.cxx']:
+        EXTENSION2LANGUAGE[cpp_extension] = LANGUAGES.C_CPP
+
+    @staticmethod
+    def separateExtension(filepath):
+        return re.search(r'([\w\\/]+)(\.\w+)', filepath).groups()
+
     @staticmethod
     def getTokenFreqs(file_list: list[RepoRetriveal.RepoFile]):
-        import_pattern = re.compile(Tokenizer.PHYTHONREGEX, re.MULTILINE)
         tokenFreqs = defaultdict(lambda: 0)
         for file in file_list:
-            tokens = file.filepath.split('/')
-            for token in tokens:
+            path, extension = Tokenizer.separateExtension(file.filepath)
+            for token in re.split(r'[\\/]', path):
                 tokenFreqs[token] += 1
 
-            if not file.filepath.endswith('.py'): continue
-
-            matches = import_pattern.findall(file.content)
-            listTokens = []
-            for match in matches:
-                for token in match:
-                    if not token: continue
-                    listTokens.extend(re.split(r'\W+', token)) 
+            if extension not in Tokenizer.EXTENSION2LANGUAGE: 
+                continue
             
-            for token in listTokens:
-                if not token: continue
-                tokenFreqs[token] += 1
+            language = Tokenizer.EXTENSION2LANGUAGE[extension]
+            import_regex = Tokenizer.LANGUAGE2REGEX[language]
+
+            import_pattern = re.compile(import_regex, re.MULTILINE)
+
+            package_path_list = []
+            for match in import_pattern.finditer(file.content):
+                groups = match.groups()
+                if isinstance(groups, tuple):
+                    package_path_list.extend(groups)
+                elif isinstance(groups, str):
+                    package_path_list.append(groups)
+            
+            for package_path in package_path_list:
+                if not package_path: continue
+                for package_name in re.split(r'[\s\.,\\/]+', package_path):
+                    tokenFreqs[package_name] += 1
 
         return tokenFreqs
