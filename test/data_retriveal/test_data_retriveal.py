@@ -4,8 +4,10 @@ import requests
 from unittest.mock import patch, MagicMock
 from datetime import datetime, timezone
 from data_retriveal import *
+import os
+dirname = os.path.dirname(__file__)
 
-DATAPATH = 'test/data_retriveal/data/'
+DATAPATH = os.path.join(dirname, 'data/')
 BASEPULLURL = 'https://api.github.com/repos/chaoss/grimoirelab-perceval/pulls/10'
 COMMITURL = 'https://api.github.com/repos/chaoss/grimoirelab-perceval/commits/'
 COMMITSHA = 'f7cec4254eac3e10c4c75d54b9d5c4d6d88ccd6e'

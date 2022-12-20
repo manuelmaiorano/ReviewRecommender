@@ -1,9 +1,11 @@
 import pytest
 from tokenizer import *
 from data_retriveal import RepoRetriveal
+import os
+dirname = os.path.dirname(__file__)
 
 filename_list = ['file1.py', 'file2.py', 'file3.py']
-PATH = 'test/tokenizer/data/'
+PATH = os.path.join(dirname, 'data/')
 
 def get_file_list(filename_list):
     file_list = []
@@ -11,7 +13,7 @@ def get_file_list(filename_list):
         filepath = PATH + filename
         with open(filepath) as file:
             content = file.read()
-            file_list.append(RepoRetriveal.RepoFile(filepath, content))
+            file_list.append(RepoRetriveal.RepoFile(filename, content))
 
     return file_list
 
@@ -20,7 +22,7 @@ class TestTokenizer:
 
     def test_tokenizer(self):
         tokenFreqs = Tokenizer.getTokenFreqs(self.file_list)
-        expected_output = {'test': 3, 'tokenizer': 3, 'data': 3, 
+        expected_output = {#'test': 3, 'tokenizer': 3, 'data': 3, 
                            'file1': 1, 'os': 1, 'pytest': 1, 'file2': 1, 
                            'contextlib': 2, 'typing': 2, 'Dict': 2, 'Iterator': 2, 
                            'file3': 1, '__future__': 1, 'annotations': 1, 
