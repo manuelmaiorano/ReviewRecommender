@@ -24,7 +24,10 @@ jobs:
           pip install flake8 pytest coverage
           pip install -r requirements.txt
       - name: Change to src directory
-        run: cd src
+        run: |
+          ls -la
+          cd ./src
+          ls -la
       - name: Lint with flake8
         run: |
           # stop the build if there are Python syntax errors or undefined names
