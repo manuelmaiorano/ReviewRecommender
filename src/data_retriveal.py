@@ -64,7 +64,9 @@ class RepoRetriveal:
         data = self.getFromUrl(reviews_url)
         reviewers = []
         for review in data:
-            reviewers.append(review['user']['login'])
+            reviewer = review['user']['login']
+            if not reviewer == author_login:
+                reviewers.append(review['user']['login'])
 
         return RepoRetriveal.PullRequest(number, author_login,
                                          reviewers, date)
