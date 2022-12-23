@@ -1,7 +1,7 @@
 from __future__ import annotations
 import requests
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import datetime 
 import pytz
 import base64
 import math
@@ -12,7 +12,7 @@ class RepoRetriveal:
     class PullRequest:
         number: int
         author_login: str
-        commenters: list[str]
+        reviewers: list[str]
         date: datetime
 
         def __hash__(self) -> int:
@@ -53,7 +53,7 @@ class RepoRetriveal:
 
     def getPullByNumber(self, number):
         pull_url = f'{self.base_url}/pulls/{str(number)}'
-        comments_url = f'{pull_url}/comments'
+        reviews_url = f'{pull_url}/reviews'
 
         data = self.getFromUrl(pull_url)
         author_login = data['user']['login']
@@ -61,13 +61,13 @@ class RepoRetriveal:
         date = datetime.fromisoformat(date_str[:-1])
         date = pytz.utc.localize(date)
 
-        data = self.getFromUrl(comments_url)
-        commenters = []
-        for comment in data:
-            commenters.append(comment['user']['login'])
+        data = self.getFromUrl(reviews_url)
+        reviewers = []
+        for review in data:
+            reviewers.append(review['user']['login'])
 
         return RepoRetriveal.PullRequest(number, author_login,
-                                         commenters, date)
+                                         reviewers, date)
 
     def getCommitBySha(self, sha):
         commit_url = f'{self.base_url}/commits/{sha}'
