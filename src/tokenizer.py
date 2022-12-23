@@ -28,15 +28,21 @@ class Tokenizer:
 
     @staticmethod
     def separateExtension(filepath):
-        return re.search(r'([\w\\/]+)(\.\w+)', filepath).groups()
+
+        result = re.search(r'([\w\\/]+)(\.\w+)', filepath)
+        if result:
+            return result.groups()
+        else:
+            return None, None
 
     @staticmethod
     def getTokenFreqs(file_list: list[RepoRetriveal.RepoFile]):
         tokenFreqs = defaultdict(lambda: 0)
         for file in file_list:
             path, extension = Tokenizer.separateExtension(file.filepath)
-            for token in re.split(r'[\\/]', path):
-                tokenFreqs[token] += 1
+            if extension:
+                for token in re.split(r'[\\/]', path):
+                    tokenFreqs[token] += 1
 
             if extension not in Tokenizer.EXTENSION2LANGUAGE: 
                 continue
