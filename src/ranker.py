@@ -2,7 +2,6 @@ import data_retriveal
 from inverted_files import InvertedFile
 from tokenizer import Tokenizer
 from scorer import Scorer
-import logging
 
 
 def loadingBarCallback(done, total):
@@ -17,7 +16,7 @@ def getRanking(repo: data_retriveal.RepoRetriveal, pullNumber,
     scorer = Scorer()
     invertedFile = InvertedFile()
 
-    logging.info('collecting pulls...')
+    print('collecting pulls...')
     done = 0
     for pull in repo.getPullIterable(pullNumber, numberOfPulls):
         done += 1
@@ -26,7 +25,7 @@ def getRanking(repo: data_retriveal.RepoRetriveal, pullNumber,
         pullTokenFreqs = Tokenizer.getTokenFreqs(files)
         invertedFile.add(pull, pullTokenFreqs)
 
-    logging.info('collecting commits...')
+    print('collecting commits...')
     done = 0
     for commit in repo.getCommitsIterable(pull.date, numberOfCommits):
         done += 1
@@ -41,7 +40,7 @@ def getRanking(repo: data_retriveal.RepoRetriveal, pullNumber,
     newPullTokenFreqs = Tokenizer.getTokenFreqs(repo.getPullFiles(newPull))
     similar = invertedFile.getSimilar(newPullTokenFreqs)
 
-    logging.info('getting rank...')
+    print('getting rank...')
     for item, score in similar.items():
         if isinstance(item, data_retriveal.RepoRetriveal.Commit) \
             and not item.author_login == newPull.author_login:
