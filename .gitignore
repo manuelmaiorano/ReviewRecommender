@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+#app logs
+*.log
+
+#app cache
+data_retriveal_cache.sqlite
