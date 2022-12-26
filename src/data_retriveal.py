@@ -120,8 +120,11 @@ class RepoRetriveal:
             try:
                 pull = self.getPullByNumber(toNumber - numOfPullsBackward)
                 numOfPullsRetrieved += 1
-            except requests.HTTPError:
-                continue
+            except requests.HTTPError as e:
+                if e.response.status_code == requests.codes['not_found']:
+                    continue
+                else:
+                    raise e
             yield pull
 
     def getPullFiles(self, pull: PullRequest):
