@@ -13,7 +13,7 @@ class RepoRetriveal:
     class PullRequest:
         number: int
         author_login: str
-        reviewers: list[str]
+        reviewers: set[str]
         date: datetime
 
         def __hash__(self) -> int:
@@ -63,11 +63,11 @@ class RepoRetriveal:
         date = pytz.utc.localize(date)
 
         data = self.getFromUrl(reviews_url)
-        reviewers = []
+        reviewers = set()
         for review in data:
             reviewer = review['user']['login']
             if not reviewer == author_login:
-                reviewers.append(review['user']['login'])
+                reviewers.add(review['user']['login'])
 
         return RepoRetriveal.PullRequest(number, author_login,
                                          reviewers, date)
