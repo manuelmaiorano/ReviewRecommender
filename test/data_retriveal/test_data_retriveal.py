@@ -15,7 +15,7 @@ PULLFILESURL = BASEPULLURL + '/files'
 
 
 URL2FILENAME = {BASEPULLURL: 'pull_request_10_response.json',
-                BASEPULLURL + '/comments': 'pull_request_10_comments_response.json',
+                BASEPULLURL + '/reviews': 'pull_request_10_comments_response.json',
                 COMMITURL + COMMITSHA: 'commit.json',
                 BASEPULLURL + '/files': 'pull_files.json',
                 PULLFILESURL: 'pull_10_files.json',
@@ -42,14 +42,14 @@ class TestSingleRetriveal:
 
     @patch('requests.Session.get')
     def test_getPullByNumber(self, mock_request):
-        repo = RepoRetriveal('chaoss', 'grimoirelab-perceval')
+        repo = RepoRetriveal('chaoss', 'grimoirelab-perceval') 
         
         mock_request.side_effect = side_effect
 
         pull = repo.getPullByNumber(10)
         assert pull == RepoRetriveal.PullRequest(number=10, 
                                                 author_login='albertinisg', 
-                                                commenters=['sduenas', 'sduenas', 'sduenas', 
+                                                reviewers=['sduenas', 'sduenas', 'sduenas', 
                                                             'sduenas', 'sduenas'], 
                                                 date=datetime(2016, 2, 9, 15, 2, 38, tzinfo=timezone.utc))
 
