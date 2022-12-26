@@ -1,5 +1,6 @@
 from __future__ import annotations
 import requests
+import requests_cache
 from dataclasses import dataclass
 from datetime import datetime 
 import pytz
@@ -41,7 +42,7 @@ class RepoRetriveal:
         self.headers = {"Accept": "application/vnd.github+json"}
         if token:
             self.headers["Authorization"] = f"Bearer {token}"
-        self.s = requests.Session()
+        self.s = requests_cache.CachedSession('data_retriveal_cache')
         self.timeout = 10
 
     def getFromUrl(self, url, params=None):
