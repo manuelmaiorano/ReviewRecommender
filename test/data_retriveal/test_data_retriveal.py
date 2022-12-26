@@ -49,8 +49,7 @@ class TestSingleRetriveal:
         pull = repo.getPullByNumber(10)
         assert pull == RepoRetriveal.PullRequest(number=10, 
                                                 author_login='albertinisg', 
-                                                reviewers=['sduenas', 'sduenas', 'sduenas', 
-                                                            'sduenas', 'sduenas'], 
+                                                reviewers=set(['sduenas']), 
                                                 date=datetime(2016, 2, 9, 15, 2, 38, tzinfo=timezone.utc))
 
     @patch('requests.Session.get')
