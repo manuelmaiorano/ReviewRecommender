@@ -2,8 +2,7 @@ from __future__ import annotations
 import requests
 import requests_cache
 from dataclasses import dataclass
-from datetime import datetime 
-import pytz
+from datetime import datetime, timezone
 import base64
 import math
 
@@ -60,7 +59,7 @@ class RepoRetriveal:
         author_login = data['user']['login']
         date_str = data['created_at']
         date = datetime.fromisoformat(date_str[:-1])
-        date = pytz.utc.localize(date)
+        date = date.replace(tzinfo=timezone.utc)
 
         data = self.getFromUrl(reviews_url)
         reviewers = set()
@@ -79,7 +78,7 @@ class RepoRetriveal:
         author_login = data['author']['login']
         date_str = data['commit']['author']['date']
         date = datetime.fromisoformat(date_str[:-1])
-        date = pytz.utc.localize(date)
+        date = date.replace(tzinfo=timezone.utc)
 
         filesInfo = data['files']
 
