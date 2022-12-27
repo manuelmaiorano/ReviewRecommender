@@ -133,3 +133,6 @@ dmypy.json
 
 #app cache
 data_retriveal_cache.sqlite
+
+#cyclonedx
+cyclonedx.json
