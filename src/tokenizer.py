@@ -29,7 +29,7 @@ class Tokenizer:
     @staticmethod
     def separateExtension(filepath):
 
-        result = re.search(r'([\w\\/]+)(\.\w+)', filepath)
+        result = re.search(r'([\w\\/]+)(\.\w+)?', filepath)
         if result:
             return result.groups()
         else:
@@ -40,7 +40,7 @@ class Tokenizer:
         tokenFreqs = defaultdict(lambda: 0)
         for file in file_list:
             path, extension = Tokenizer.separateExtension(file.filepath)
-            if extension:
+            if path:
                 for token in re.split(r'[\\/]', path):
                     tokenFreqs[token] += 1
 
