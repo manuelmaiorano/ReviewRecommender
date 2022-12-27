@@ -10,8 +10,6 @@ def test_inverted_files():
     invertedFile.add('item1', QUERY2FREQS['item1'])
     invertedFile.add('itemDifferentfrom1', QUERY2FREQS['itemDifferentfrom1'])
 
-    invertedFile.calculateIDF()
-
     items2Score = invertedFile.getSimilar(QUERY2FREQS['itemSimilarto1'])
     
     assert items2Score['item1'] > items2Score['itemDifferentfrom1']

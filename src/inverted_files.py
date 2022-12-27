@@ -48,6 +48,7 @@ class InvertedFile:
                 tokenOccurrence.item_ref.length_squared += (idf * count)**2
 
     def getSimilar(self, tokenFreqs):
+        self.calculateIDF()
         retrievedRef2score: dict[ItemReference, float] = {}
         token2weights = {}
         for token, count in tokenFreqs.items():

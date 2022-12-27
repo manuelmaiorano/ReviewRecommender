@@ -33,8 +33,6 @@ def getRanking(repo: data_retriveal.RepoRetriveal, pullNumber,
         files = repo.getCommitFiles(commit)
         commitTokenFreqs = Tokenizer.getTokenFreqs(files)
         invertedFile.add(commit, commitTokenFreqs)
-
-    invertedFile.calculateIDF()
     
     newPull =repo.getPullByNumber(pullNumber)
     newPullTokenFreqs = Tokenizer.getTokenFreqs(repo.getPullFiles(newPull))
