@@ -41,7 +41,8 @@ class RepoRetriveal:
         self.headers = {"Accept": "application/vnd.github+json"}
         if token:
             self.headers["Authorization"] = f"Bearer {token}"
-        self.s = requests_cache.CachedSession('data_retriveal_cache')
+        self.s = requests_cache.CachedSession('data_retriveal_cache', 
+                                               allowable_codes=(200, 404))
         self.timeout = 10
 
     def getFromUrl(self, url, params=None):
