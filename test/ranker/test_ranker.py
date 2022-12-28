@@ -23,6 +23,7 @@ def test_getRanking(mock_request):
     mock_request.side_effect = side_effect
     repo = RepoRetriveal('opencv', 'opencv')
     scores = getRanking(repo, 23008, 10, 10)
-    print(scores.getSorted())
+    #print(scores.getSorted())
+    rank = scores.getSorted()
 
-    assert 'alalek'
+    assert 'alalek' in rank and 'asmorkalov' in rank
