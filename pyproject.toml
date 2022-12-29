@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "review_recommender"
+version = "0.0.1"
+authors = [
+  { name="Manuel Maiorano", email="manuelmaiorano01@gmail.com" },
+]
+description = "A toll to rank possible reviewer for a pull request"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = ["requests-cache==0.9.7"]
+
+[project.scripts]
+review_recommender = "review_recommender:run"
+
+[project.urls]
+"Homepage" = "https://github.com/manuelmaiorano/ReviewRecommender"
+"Bug Tracker" = "https://github.com/manuelmaiorano/ReviewRecommender/issues"
+
