@@ -1,7 +1,7 @@
-import data_retriveal
-from inverted_files import InvertedFile
-from tokenizer import Tokenizer
-from scorer import Scorer
+from . import data_retriveal
+from .inverted_files import InvertedFile
+from .tokenizer import Tokenizer
+from .scorer import Scorer
 
 
 def loadingBarCallback(done, total):

@@ -1,6 +1,6 @@
 import argparse
-from ranker import getRanking
-from data_retriveal import RepoRetriveal
+from review_recommender.ranker import getRanking
+from review_recommender.data_retriveal import RepoRetriveal
 
 def parse():
     parser = argparse.ArgumentParser(

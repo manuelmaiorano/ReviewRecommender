@@ -1,5 +1,5 @@
 import pytest
-from inverted_files import *
+from review_recommender.inverted_files import *
 
 QUERY2FREQS = {'item1':              {'token1': 10, 'token2': 5, 'token3': 7, 'token4': 15 },
                'itemSimilarto1' :    {'token1': 5, 'token2': 7, 'token3': 10, 'token4': 20, 'token5': 4 },

@@ -3,7 +3,7 @@ import json
 import requests
 from unittest.mock import patch, MagicMock
 from datetime import datetime, timezone
-from data_retriveal import *
+from review_recommender.data_retriveal import *
 import os
 dirname = os.path.dirname(__file__)
 
@@ -71,7 +71,7 @@ class TestSingleRetriveal:
                                                 date=datetime(2022, 11, 7, 9, 0, 33, tzinfo=timezone.utc))
        
 class TestIterables:
-    @patch('data_retriveal.RepoRetriveal.getPullByNumber')
+    @patch('review_recommender.data_retriveal.RepoRetriveal.getPullByNumber')
     def test_getPullIterable(self, mock_method):
         repo = RepoRetriveal('owner', 'repo')
         mock_method.return_value = None
@@ -83,8 +83,8 @@ class TestIterables:
         assert numberRetrieved == 30
 
     @pytest.mark.parametrize('numberRequested', [101, 30])
-    @patch('data_retriveal.RepoRetriveal.getFromUrl')
-    @patch('data_retriveal.RepoRetriveal.getCommitBySha')
+    @patch('review_recommender.data_retriveal.RepoRetriveal.getFromUrl')
+    @patch('review_recommender.data_retriveal.RepoRetriveal.getCommitBySha')
     def test_getCommitIterable(self, mock_method, mock_request, numberRequested):
         repo = RepoRetriveal('owner', 'repo')
         mock_request.return_value = [{'sha': 'fakesha'}] * 100

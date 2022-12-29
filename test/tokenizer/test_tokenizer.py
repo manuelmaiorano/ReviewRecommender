@@ -1,6 +1,6 @@
 import pytest
-from tokenizer import *
-from data_retriveal import RepoRetriveal
+from review_recommender.tokenizer import *
+from review_recommender.data_retriveal import RepoRetriveal
 import os
 dirname = os.path.dirname(__file__)
 

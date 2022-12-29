@@ -2,7 +2,7 @@ from __future__ import annotations
 from enum import Enum
 import re
 from collections import defaultdict
-from data_retriveal import RepoRetriveal
+from .data_retriveal import RepoRetriveal
 
 class Tokenizer:
 

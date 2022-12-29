@@ -1,5 +1,5 @@
 import pytest
-from scorer import *
+from review_recommender.scorer import *
 
 def test_scorer():
     scorer = Scorer()

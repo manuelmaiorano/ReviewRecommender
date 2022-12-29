@@ -1,9 +1,9 @@
 import pytest
 from unittest.mock import patch, MagicMock
 import requests_cache
-from data_retriveal import RepoRetriveal
-from ranker import getRanking
-from scorer import Scorer
+from review_recommender.data_retriveal import RepoRetriveal
+from review_recommender.ranker import getRanking
+from review_recommender.scorer import Scorer
 import os
 dirname = os.path.dirname(__file__)
 
@@ -18,7 +18,7 @@ def side_effect( url, params=None):
     r.raise_for_status()
     return r.json()
 
-@patch('data_retriveal.RepoRetriveal.getFromUrl')
+@patch('review_recommender.data_retriveal.RepoRetriveal.getFromUrl')
 def test_getRanking(mock_request):
     mock_request.side_effect = side_effect
     repo = RepoRetriveal('opencv', 'opencv')
