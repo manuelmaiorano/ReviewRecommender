@@ -34,11 +34,15 @@ class TestTokenizer:
         JAVA_FILE = """
                 import packageName.className;
                 package  myPackage;
+
+                /* this is a comment with import and package keywords*/
         """
         C_FILE = """
                 #include <iostream>
                 #include "stdlib.h"
                 #include "mylib/file.h"
+
+                // commnent with the #include<keyword>
         """
         filejava = RepoRetriveal.RepoFile('filej.java', JAVA_FILE)
         filec = RepoRetriveal.RepoFile('filec.cpp', C_FILE)
@@ -50,3 +54,12 @@ class TestTokenizer:
                            'mylib': 1, 'file': 1}
         
         assert tokenFreqs == expected_output
+    
+    def test_extensions(self):
+        file1 = RepoRetriveal.RepoFile('path/with/no_extension', '')
+        file2 = RepoRetriveal.RepoFile('path/with/file.extension', '')
+        tokenFreqs = Tokenizer.getTokenFreqs([file1, file2])
+        expected_output = {'path': 2, 'with': 2, 'no_extension': 1, 'file': 1}
+        
+        assert tokenFreqs == expected_output
+
