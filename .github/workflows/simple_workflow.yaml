@@ -2,7 +2,7 @@ name: Python package
 
 on:
   push:
-    branches: [ develop ]
+    branches: [ develop, main ]
 
 jobs:
   build:
@@ -44,7 +44,8 @@ jobs:
         if: ${{ always() }}
       - name: Evaluate coverage
         run: |
-          coverage run -m pytest ../test
+          coverage run --branch -m pytest ../test
+          coverage report
           coverage xml
         working-directory: ${{env.working-directory}}
       - name: Upload coverage report
