@@ -13,3 +13,10 @@ def test_inverted_files():
     items2Score = invertedFile.getSimilar(QUERY2FREQS['itemSimilarto1'])
     
     assert items2Score['item1'] > items2Score['itemDifferentfrom1']
+
+def test_inverted_files_empty():
+    invertedFile = InvertedFile()
+
+    items2Score = invertedFile.getSimilar(QUERY2FREQS['itemSimilarto1'])
+    
+    assert not len(items2Score)
