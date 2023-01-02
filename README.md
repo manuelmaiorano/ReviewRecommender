@@ -4,7 +4,7 @@ A tool that helps find reviewer for a pull request.
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install.
 
 ```bash
 pip install review-recommender
