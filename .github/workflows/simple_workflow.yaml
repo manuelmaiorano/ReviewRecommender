@@ -46,10 +46,11 @@ jobs:
         run: |
           coverage run --branch -m pytest ../test
           coverage report
-          coverage xml
+          coverage json
+          python3 check_coverage.py
         working-directory: ${{env.working-directory}}
       - name: Upload coverage report
         uses: actions/upload-artifact@v3
         with:
           name: coverage_results-${{ matrix.python-version }}
-          path: ${{env.working-directory}}/coverage.xml
+          path: ${{env.working-directory}}/coverage.json
