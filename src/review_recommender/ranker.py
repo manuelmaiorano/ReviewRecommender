@@ -16,6 +16,8 @@ def getRanking(repo: data_retriveal.RepoRetriveal, pullNumber,
     scorer = Scorer()
     invertedFile = InvertedFile()
 
+    newPull = repo.getPullByNumber(pullNumber)
+
     print('collecting pulls...')
     done = 0
     for pull in repo.getPullIterable(pullNumber, numberOfPulls):
@@ -34,7 +36,6 @@ def getRanking(repo: data_retriveal.RepoRetriveal, pullNumber,
         commitTokenFreqs = Tokenizer.getTokenFreqs(files)
         invertedFile.add(commit, commitTokenFreqs)
     
-    newPull =repo.getPullByNumber(pullNumber)
     newPullTokenFreqs = Tokenizer.getTokenFreqs(repo.getPullFiles(newPull))
     similar = invertedFile.getSimilar(newPullTokenFreqs)
 
