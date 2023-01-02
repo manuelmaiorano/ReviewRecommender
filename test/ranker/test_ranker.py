@@ -1,10 +1,10 @@
 import pytest
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch
 import requests_cache
 from review_recommender.data_retriveal import RepoRetriveal
 from review_recommender.ranker import getRanking
-from review_recommender.scorer import Scorer
 import os
+import requests
 dirname = os.path.dirname(__file__)
 
 DBPATH = os.path.join(dirname, 'data/test_db')
@@ -27,3 +27,17 @@ def test_getRanking(mock_request):
     rank = scores.getSorted()
 
     assert 'alalek' in rank and 'asmorkalov' in rank
+
+@patch('review_recommender.data_retriveal.RepoRetriveal.getFromUrl')
+def test_getRanking_bad_number(mock_request):
+    mock_request.side_effect = side_effect
+    repo = RepoRetriveal('opencv', 'opencv')
+    with pytest.raises(requests.HTTPError):
+        scores = getRanking(repo, -1, 10, 10)
+
+@patch('review_recommender.data_retriveal.RepoRetriveal.getFromUrl')
+def test_getRanking_bad_repo(mock_request):
+    mock_request.side_effect = side_effect
+    repo = RepoRetriveal('badrepo', 'badrepo')
+    with pytest.raises(requests.HTTPError):
+        scores = getRanking(repo, -1, 10, 10)
