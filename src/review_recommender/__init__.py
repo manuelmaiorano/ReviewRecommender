@@ -4,18 +4,18 @@ from .data_retriveal import RepoRetriveal
 
 def parse():
     parser = argparse.ArgumentParser(
-                        prog = 'ReviewRecommender',
+                        prog = 'review_recommender',
                         description = 'Given pull request, rank revisors')
 
-    parser.add_argument('owner') 
-    parser.add_argument('repo') 
-    parser.add_argument('num', type=int)
-    parser.add_argument('token')
+    parser.add_argument('owner', help='the owner of the repository') 
+    parser.add_argument('repo', help='the name of the repository') 
+    parser.add_argument('num', type=int, help='the number of the pull request')
+    parser.add_argument('token', help='the github access token')
 
     args = parser.parse_args()
-    repo = RepoRetriveal(args.owner, args.repo, args.token)
-    return repo, args.num, args.token
+    return args.owner, args.repo, args.num, args.token
 
 def run():
-    repo, pullNumber, token = parse()
+    owner, repo, pullNumber, token = parse()
+    RepoRetriveal(owner, repo, token)
     print(getRanking(repo, pullNumber).prettyFormat())
