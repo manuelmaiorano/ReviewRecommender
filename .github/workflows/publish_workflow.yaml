@@ -26,6 +26,10 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install build
+          pip install cyclonedx-bom
+      - name: Create SBOM
+        run: |
+          cyclonedx-py -r --format json
       - name: Build package
         run: python -m build
       - name: Publish package

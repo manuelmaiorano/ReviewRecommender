@@ -25,3 +25,8 @@ review_recommender = "review_recommender:run"
 "Homepage" = "https://github.com/manuelmaiorano/ReviewRecommender"
 "Bug Tracker" = "https://github.com/manuelmaiorano/ReviewRecommender/issues"
 
+[tool.hatch.build]
+artifacts = [
+  "cyclonedx.json"
+]
+
