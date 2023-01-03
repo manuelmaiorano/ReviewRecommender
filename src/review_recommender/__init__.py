@@ -16,6 +16,6 @@ def parse():
     return args.owner, args.repo, args.num, args.token
 
 def run():
-    owner, repo, pullNumber, token = parse()
-    RepoRetriveal(owner, repo, token)
+    owner, repo_name, pullNumber, token = parse()
+    repo = RepoRetriveal(owner, repo_name, token)
     print(getRanking(repo, pullNumber).prettyFormat())
