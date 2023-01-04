@@ -40,4 +40,4 @@ def test_getRanking_bad_repo(mock_request):
     mock_request.side_effect = side_effect
     repo = RepoRetriveal('badrepo', 'badrepo')
     with pytest.raises(requests.HTTPError):
-        scores = getRanking(repo, -1, 10, 10)
+        scores = getRanking(repo, 23008, 10, 10)
