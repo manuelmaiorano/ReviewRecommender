@@ -4,11 +4,11 @@ from .tokenizer import Tokenizer
 from .scorer import Scorer
 
 
-def loadingBarCallback(done, total):
-    numOfTicks = 50
-    percentage = int(done/total*100)
-    print('done: ' + '-'* int(done/total* numOfTicks) + f'{percentage} %', end="\r")
-    if percentage == 100: print('\n')
+# def loadingBarCallback(done, total):
+#     numOfTicks = 50
+#     percentage = int(done/total*100)
+#     print('done: ' + '-'* int(done/total* numOfTicks) + f'{percentage} %', end="\r")
+#     if percentage == 100: print('\n')
 
 def getRanking(repo: data_retriveal.RepoRetriveal, pullNumber, 
                numberOfPulls=30, numberOfCommits=30):
@@ -19,19 +19,13 @@ def getRanking(repo: data_retriveal.RepoRetriveal, pullNumber,
     newPull = repo.getPullByNumber(pullNumber)
 
     print('collecting pulls...')
-    done = 0
     for pull in repo.getPullIterable(pullNumber, numberOfPulls):
-        done += 1
-        loadingBarCallback(done, numberOfPulls)
         files = repo.getPullFiles(pull)
         pullTokenFreqs = Tokenizer.getTokenFreqs(files)
         invertedFile.add(pull, pullTokenFreqs)
 
     print('collecting commits...')
-    done = 0
     for commit in repo.getCommitsIterable(newPull.date, numberOfCommits):
-        done += 1
-        loadingBarCallback(done, numberOfCommits)
         files = repo.getCommitFiles(commit)
         commitTokenFreqs = Tokenizer.getTokenFreqs(files)
         invertedFile.add(commit, commitTokenFreqs)
