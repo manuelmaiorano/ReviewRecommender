@@ -29,7 +29,7 @@ def getRanking(repo: data_retriveal.RepoRetriveal, pullNumber,
 
     print('collecting commits...')
     done = 0
-    for commit in repo.getCommitsIterable(pull.date, numberOfCommits):
+    for commit in repo.getCommitsIterable(newPull.date, numberOfCommits):
         done += 1
         loadingBarCallback(done, numberOfCommits)
         files = repo.getCommitFiles(commit)
