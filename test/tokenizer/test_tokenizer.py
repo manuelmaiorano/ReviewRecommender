@@ -58,7 +58,8 @@ class TestTokenizer:
     def test_extensions(self):
         file1 = RepoRetriveal.RepoFile('path/with/no_extension', '')
         file2 = RepoRetriveal.RepoFile('path/with/file.extension', '')
-        tokenFreqs = Tokenizer.getTokenFreqs([file1, file2])
+        file3 = RepoRetriveal.RepoFile('', '')
+        tokenFreqs = Tokenizer.getTokenFreqs([file1, file2, file3])
         expected_output = {'path': 2, 'with': 2, 'no_extension': 1, 'file': 1}
         
         assert tokenFreqs == expected_output
