@@ -76,7 +76,10 @@ class RepoRetriveal:
         commit_url = f'{self.base_url}/commits/{sha}'
 
         data = self.getFromUrl(commit_url)
-        author_login = data['author']['login']
+        if data['author']:
+            author_login = data['author']['login']
+        else:
+            author_login = None
         date_str = data['commit']['author']['date']
         date = datetime.fromisoformat(date_str[:-1])
         date = date.replace(tzinfo=timezone.utc)
@@ -107,7 +110,9 @@ class RepoRetriveal:
 
             for item in data:
                 if currentNumOfCommits >= numberOfCommits: break
-                yield self.getCommitBySha(item['sha'])
+                commit = self.getCommitBySha(item['sha'])
+                if not commit.author_login: continue
+                yield commit
                 currentNumOfCommits += 1
             currentPage += 1
 
@@ -117,6 +122,8 @@ class RepoRetriveal:
         numOfPullsBackward = 0
         while numOfPullsRetrieved < numberOfPulls:
             numOfPullsBackward += 1
+            pullNumber = toNumber - numOfPullsBackward
+            if pullNumber <= 0: break
             try:
                 pull = self.getPullByNumber(toNumber - numOfPullsBackward)
                 numOfPullsRetrieved += 1

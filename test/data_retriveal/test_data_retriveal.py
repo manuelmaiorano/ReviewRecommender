@@ -81,6 +81,17 @@ class TestIterables:
             numberRetrieved += 1
         
         assert numberRetrieved == 30
+    
+    @patch('review_recommender.data_retriveal.RepoRetriveal.getPullByNumber')
+    def test_getPullIterable(self, mock_method):
+        repo = RepoRetriveal('owner', 'repo')
+        mock_method.return_value = None
+
+        numberRetrieved = 0
+        for pull in repo.getPullIterable(10, 30):
+            numberRetrieved += 1
+        
+        assert numberRetrieved == 9
 
     @pytest.mark.parametrize('numberRequested', [101, 30])
     @patch('review_recommender.data_retriveal.RepoRetriveal.getFromUrl')
@@ -88,7 +99,7 @@ class TestIterables:
     def test_getCommitIterable(self, mock_method, mock_request, numberRequested):
         repo = RepoRetriveal('owner', 'repo')
         mock_request.return_value = [{'sha': 'fakesha'}] * 100
-        mock_method.return_value = {'sha': 'fakesha'}
+        mock_method.return_value = RepoRetriveal.Commit('fake_sha', 'author', [], datetime.now())
 
         numberRetrieved = 0
         for commit in repo.getCommitsIterable(datetime.now(), numberRequested):
