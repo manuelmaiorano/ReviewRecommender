@@ -8,8 +8,15 @@ import math
 
 
 class RepoRetriveal:
+    """
+    Class to download pulls and commit from a GitHub repository.
+    """
     @dataclass
     class PullRequest:
+        """
+        A pull request in a repository identified by its number. 
+        Can access login name of the author, set of reviewers and date.
+        """
         number: int
         author_login: str
         reviewers: set[str]
@@ -20,6 +27,10 @@ class RepoRetriveal:
 
     @dataclass
     class Commit:
+        """
+        A commit in a repository identified by its sha.
+        Can acces login name of the author and date.
+        """
         sha: str
         author_login: str
         filesInfo: list
@@ -30,10 +41,22 @@ class RepoRetriveal:
 
     @dataclass
     class RepoFile:
+        """
+        A text file in a repository.
+        Can access its path and its content.
+        """
         filepath: str
         content: str
 
     def __init__(self, owner, repo, token=None):
+        """
+        Returns a RepoRetriveal instance.
+
+        Args:
+            owner: the name of the owner
+            repo: the name of the repository
+            token: the GitHub access token
+        """
         self.owner = owner
         self.repo = repo
         self.token = token
@@ -53,6 +76,15 @@ class RepoRetriveal:
         return r.json()
 
     def getPullByNumber(self, number):
+        """
+        Returns a RepoRetriveal.PullRequest instance from its number.
+
+        Args:
+            number (int): The number of the pull request.
+
+        Raises:
+            requests.HTTPError: If there is no pull with this number.
+        """
         pull_url = f'{self.base_url}/pulls/{str(number)}'
         reviews_url = f'{pull_url}/reviews'
 
@@ -73,6 +105,14 @@ class RepoRetriveal:
                                          reviewers, date)
 
     def getCommitBySha(self, sha):
+        """
+        Returns a RepoRetriveal.Commit instance from its sha.
+
+        Args:
+            sha (string): The sha of the commit.
+        Raises:
+            requests.HTTPError: If there is no pull with this sha.
+        """
         commit_url = f'{self.base_url}/commits/{sha}'
 
         data = self.getFromUrl(commit_url)
@@ -89,6 +129,14 @@ class RepoRetriveal:
         return RepoRetriveal.Commit(sha, author_login, filesInfo, date)
 
     def getCommitsIterable(self, toDate: datetime, numberOfCommits):
+        """
+        Returns a generator to be used in a for loop, that returns
+        a certain number of commits up to a certain date.
+
+        Args:
+            toDate(datetime.datetime): retrieve only commits before this date.
+            numberOfCommits: retrive this number of commit, if possible.
+        """
         MAX_PER_PAGE = 100
         commit_url = f'{self.base_url}/commits'
         date_str = toDate.isoformat()[:-6]+'Z'
@@ -117,7 +165,14 @@ class RepoRetriveal:
             currentPage += 1
 
     def getPullIterable(self, toNumber, numberOfPulls):
+        """
+        Returns a generator to be used in a for loop, that returns
+        a certain number of pull request up to a certain number.
 
+        Args:
+            toNumber(int): retrieve only pulls before and not including this number.
+            numberOfPulls: retrive this number of pulls, if possible.
+        """
         numOfPullsRetrieved = 0
         numOfPullsBackward = 0
         while numOfPullsRetrieved < numberOfPulls:
@@ -135,11 +190,29 @@ class RepoRetriveal:
             yield pull
 
     def getPullFiles(self, pull: PullRequest):
+        """
+        Returns a list of RepoRetriveal.RepoFile associated with a pull request.
+
+        Args:
+            pull(RepoRetriveal.PullRequest): the pull request.
+
+        Raises:
+            requests.HTTPError: If there is no such pull.
+        """
         files_url = f'{self.base_url}/pulls/{str(pull.number)}/files'
         data = self.getFromUrl(files_url)
         return self.getFileContentList(data)
 
     def getCommitFiles(self, commit: Commit):
+        """
+        Returns a list of RepoRetriveal.RepoFile associated with a commit.
+
+        Args:
+            pull(RepoRetriveal.Commit): the commit.
+
+        Raises:
+            requests.HTTPError: If there is no such commit.
+        """
         return self.getFileContentList(commit.filesInfo)
 
     def getFileContentList(self, files_data):

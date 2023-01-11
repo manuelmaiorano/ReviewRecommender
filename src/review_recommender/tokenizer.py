@@ -37,6 +37,18 @@ class Tokenizer:
 
     @staticmethod
     def getTokenFreqs(file_list: list[RepoRetriveal.RepoFile]):
+        """
+        Given a list of files in a repository, returns the frequency
+        of the import keywords in such files, if they are source files
+        of the supported languages. 
+        Adds to the tokens also the tokens in the file path.
+
+        Args:
+            file_list(list[data_retriveal.RepoRetriveal.RepoFile]): the list of files
+        
+        Returns:
+            A dictionary of token-frequency pairs.
+        """
         tokenFreqs = defaultdict(lambda: 0)
         for file in file_list:
             path, extension = Tokenizer.separateExtension(file.filepath)

@@ -24,12 +24,25 @@ class TokenInfo:
 
 
 class InvertedFile:
+    """
+    A class that models a basic inverted file, to witch you can add
+    key value pairs of tokens to their count associated with an item
+    (could be a document or anything else, the only condition is that
+    it is hashable). 
+    Can be queried to get similar items based on cosine similarity.
+    """
 
     def __init__(self):
         self.token2Items: dict[str, TokenInfo] = {}
         self.totalItems = 0
 
     def add(self, item, token_freq: dict[str, int]):
+        """
+        Add an item with its associated token frequencies:
+
+        Args:
+            token_freq(dict[str, int]): pairs of token and their count
+        """
         for token, count in token_freq.items():
             if not token in self.token2Items:
                 self.token2Items[token] = TokenInfo(idf=0, occ_list=[])
@@ -48,6 +61,13 @@ class InvertedFile:
                 tokenOccurrence.item_ref.length_squared += (idf * count)**2
 
     def getSimilar(self, tokenFreqs):
+        """
+        Returns a  list of items that are similar to a query, that is 
+        a new dictionary of token with their count.
+
+        Args:
+            tokenFreqs(dict[str, int]): pairs of token and their count
+        """
         self.calculateIDF()
         retrievedRef2score: dict[ItemReference, float] = {}
         token2weights = {}

@@ -1,20 +1,31 @@
 class Scorer:
+    """
+    A simple scoreboard for reviewers.
+    """
     def __init__(self):
         self.reviewerToScore = {}
         
     def addReviewerScore(self, reviewer, score):
-
+        """
+        Add a score to a reviewer.
+        """
         if reviewer not in self.reviewerToScore:
             self.reviewerToScore[reviewer] = 0
         self.reviewerToScore[reviewer] += score
 
     def getSorted(self):
+        """
+        Returns a dictionary sorted by decreasing order of scores.
+        """
         reviewer = dict(sorted(self.reviewerToScore.items(), 
                                key=lambda item: item[1], 
                                reverse=True))
         return reviewer
 
     def prettyFormat(self):
+        """
+        Returns a formatted string of the scores in percentage.
+        """
         totalScore = 0
         for score in self.reviewerToScore.values(): totalScore += score
 

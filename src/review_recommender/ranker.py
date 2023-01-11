@@ -12,7 +12,18 @@ from .scorer import Scorer
 
 def getRanking(repo: data_retriveal.RepoRetriveal, pullNumber, 
                numberOfPulls=30, numberOfCommits=30):
+    """
+    Given a repository and a pull number, returns a rank of possible revisors:
 
+    Args:
+        repo(data_retriveal.RepoRetriveal) : the repository
+        pullNumber(int): the number of the pull
+        numberOfPulls(int): number of pulls you want to retrieve, defaults to 30
+        numberOfCommits(int): number of commits you want to retrieve, defaults to 30
+
+    Raises:
+        requests.HTTPError: the repository or the pull number is invalid.
+    """
     scorer = Scorer()
     invertedFile = InvertedFile()
 
