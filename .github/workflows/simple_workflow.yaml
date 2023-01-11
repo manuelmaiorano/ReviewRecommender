@@ -3,6 +3,8 @@ name: Python package
 on:
   push:
     branches: [ develop, main ]
+    paths: 
+      - 'src/**'
 
 jobs:
   build:
