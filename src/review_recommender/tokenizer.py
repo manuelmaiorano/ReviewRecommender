@@ -5,7 +5,10 @@ from collections import defaultdict
 from .data_retriveal import RepoRetriveal
 
 class Tokenizer:
-
+    """
+    A simple tokenizer for source files, that collects import
+    keywords from python, java and c++ code.
+    """
     class LANGUAGES(Enum):
         PYTHON = 1
         JAVA = 2
