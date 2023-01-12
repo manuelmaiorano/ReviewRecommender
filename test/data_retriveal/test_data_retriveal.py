@@ -71,27 +71,18 @@ class TestSingleRetriveal:
                                                 date=datetime(2022, 11, 7, 9, 0, 33, tzinfo=timezone.utc))
        
 class TestIterables:
-    @patch('review_recommender.data_retriveal.RepoRetriveal.getPullByNumber')
-    def test_getPullIterable(self, mock_method):
-        repo = RepoRetriveal('owner', 'repo')
-        mock_method.return_value = None
-
-        numberRetrieved = 0
-        for pull in repo.getPullIterable(100, 30):
-            numberRetrieved += 1
-        
-        assert numberRetrieved == 30
     
+    @pytest.mark.parametrize('from_number, numberRetrievedExpected', [(100,30), (10, 9), (30, 29), (31, 30)])
     @patch('review_recommender.data_retriveal.RepoRetriveal.getPullByNumber')
-    def test_getPullIterable(self, mock_method):
+    def test_getPullIterable(self, mock_method, from_number, numberRetrievedExpected):
         repo = RepoRetriveal('owner', 'repo')
         mock_method.return_value = None
 
         numberRetrieved = 0
-        for pull in repo.getPullIterable(10, 30):
+        for pull in repo.getPullIterable(from_number, 30):
             numberRetrieved += 1
         
-        assert numberRetrieved == 9
+        assert numberRetrieved == numberRetrievedExpected
 
     @pytest.mark.parametrize('numberRequested', [101, 30])
     @patch('review_recommender.data_retriveal.RepoRetriveal.getFromUrl')
