@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "review_recommender"
-version = "1.0.2"
+version = "1.0.3"
 authors = [
   { name="Manuel Maiorano", email="manuelmaiorano01@gmail.com" },
   { name="Giovanni Dimolfetta", email="giovanni.dimolfetta@gmail.com" },
@@ -25,4 +25,4 @@ review_recommender = "review_recommender:run"
 [project.urls]
 "Homepage" = "https://github.com/manuelmaiorano/ReviewRecommender"
 "Bug Tracker" = "https://github.com/manuelmaiorano/ReviewRecommender/issues"
-
+"Documentation" = "https://reviewrecommender.readthedocs.io/en/latest/"
