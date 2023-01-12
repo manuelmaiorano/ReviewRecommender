@@ -70,10 +70,7 @@ class Tokenizer:
             package_path_list = []
             for match in import_pattern.finditer(file.content):
                 groups = match.groups()
-                if isinstance(groups, tuple):
-                    package_path_list.extend(groups)
-                elif isinstance(groups, str):
-                    package_path_list.append(groups)
+                package_path_list.extend(groups)
             
             for package_path in package_path_list:
                 if not package_path: continue
