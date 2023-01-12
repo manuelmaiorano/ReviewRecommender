@@ -8,6 +8,10 @@ class Scorer:
     def addReviewerScore(self, reviewer, score):
         """
         Add a score to a reviewer.
+
+        Args:
+            reviewer(string)
+            score(float)
         """
         if reviewer not in self.reviewerToScore:
             self.reviewerToScore[reviewer] = 0
@@ -16,6 +20,9 @@ class Scorer:
     def getSorted(self):
         """
         Returns a dictionary sorted by decreasing order of scores.
+
+        Returns:
+            dict[string, float]: reviewer-score pairs.
         """
         reviewer = dict(sorted(self.reviewerToScore.items(), 
                                key=lambda item: item[1], 
